@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="spotify-web-api-android-0.1.1-unspecified">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/clockify/spotify-web-api-android-0.1.1/unspecified/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/clockify/spotify-web-api-android-0.1.1/unspecified/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

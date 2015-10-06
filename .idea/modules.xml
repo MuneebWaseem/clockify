@@ -5,6 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/clockify.iml" filepath="$PROJECT_DIR$/clockify.iml" />
       <module fileurl="file://$PROJECT_DIR$/datetimepicker/datetimepicker.iml" filepath="$PROJECT_DIR$/datetimepicker/datetimepicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spotify-auth-1.0.0-beta10/spotify-auth-1.0.0-beta10.iml" filepath="$PROJECT_DIR$/spotify-auth-1.0.0-beta10/spotify-auth-1.0.0-beta10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spotify-player-1.0.0-beta10/spotify-player-1.0.0-beta10.iml" filepath="$PROJECT_DIR$/spotify-player-1.0.0-beta10/spotify-player-1.0.0-beta10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spotify-web-api-android-0.1.1/spotify-web-api-android-0.1.1.iml" filepath="$PROJECT_DIR$/spotify-web-api-android-0.1.1/spotify-web-api-android-0.1.1.iml" />
     </modules>
   </component>
 </project>

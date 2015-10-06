@@ -21,4 +21,7 @@ android {
 dependencies {
     compile files('libs/android-support-v13.jar')
     compile project(':datetimepicker')
+    compile project(':spotify-auth-1.0.0-beta10')
+    compile project(':spotify-player-1.0.0-beta10')
+    compile project(':spotify-web-api-android-0.1.1')
 }
