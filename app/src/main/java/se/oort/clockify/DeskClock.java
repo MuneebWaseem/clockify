@@ -77,6 +77,7 @@ public class DeskClock extends Activity implements LabelDialogFragment.TimerLabe
     private Tab mTimerTab;
     private Tab mStopwatchTab;
     private Menu mMenu;
+    private SpotifyProxy spotify;
 
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
@@ -180,6 +181,9 @@ public class DeskClock extends Activity implements LabelDialogFragment.TimerLabe
         // We need to update the system next alarm time on app startup because the
         // user might have clear our data.
         AlarmStateManager.updateNextAlarm(this);
+
+        spotify = new SpotifyProxy();
+        spotify.init(this);
     }
 
     @Override
@@ -234,6 +238,12 @@ public class DeskClock extends Activity implements LabelDialogFragment.TimerLabe
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        spotify.handleActivityResult(requestCode, resultCode, intent);
     }
 
     @Override

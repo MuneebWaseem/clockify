@@ -13,6 +13,8 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.DEVICE_POWER" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19" ></uses-sdk>
 
     <application android:label="@string/app_label"
@@ -23,6 +25,10 @@
         <provider android:name=".provider.ClockProvider"
                 android:authorities="se.oort.clockify"
                 android:exported="false" />
+
+        <activity
+            android:name="com.spotify.sdk.android.authentication.LoginActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
         <activity android:name="DeskClock"
                 android:label="@string/app_label"
