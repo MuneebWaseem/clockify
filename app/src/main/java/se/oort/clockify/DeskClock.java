@@ -77,7 +77,7 @@ public class DeskClock extends Activity implements LabelDialogFragment.TimerLabe
     private Tab mTimerTab;
     private Tab mStopwatchTab;
     private Menu mMenu;
-    private SpotifyProxy spotify;
+    private SpotifyProxy spotify = SpotifyProxy.getInstance();
 
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
@@ -182,7 +182,6 @@ public class DeskClock extends Activity implements LabelDialogFragment.TimerLabe
         // user might have clear our data.
         AlarmStateManager.updateNextAlarm(this);
 
-        spotify = new SpotifyProxy();
         spotify.init(this);
     }
 

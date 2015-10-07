@@ -93,7 +93,11 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="support-v4-19.0.0" level="project" />
     <orderEntry type="library" exported="" name="support-v13-19.0.0" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.3.1" level="project" />
+    <orderEntry type="library" exported="" name="okhttp-2.2.0" level="project" />
     <orderEntry type="library" exported="" name="android-support-v13" level="project" />
+    <orderEntry type="library" exported="" name="retrofit-1.9.0" level="project" />
+    <orderEntry type="library" exported="" name="okio-1.2.0" level="project" />
     <orderEntry type="module" module-name="spotify-auth-1.0.0-beta10" exported="" />
     <orderEntry type="module" module-name="datetimepicker" exported="" />
     <orderEntry type="module" module-name="spotify-player-1.0.0-beta10" exported="" />
