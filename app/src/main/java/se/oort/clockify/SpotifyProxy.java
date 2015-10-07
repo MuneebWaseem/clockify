@@ -2,6 +2,7 @@ package se.oort.clockify;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
@@ -83,7 +84,6 @@ public class SpotifyProxy
     }
 
     private void getPlaylists(final Callback<List<PlaylistSimple>> cb, final int offset) {
-        awaitInitDone();
         final Map<String, Object> options = new HashMap<String, Object>();
         options.put("offset", offset);
         options.put("limit", maxPlaylistLimit);
@@ -100,12 +100,14 @@ public class SpotifyProxy
         });
     }
 
-    public void getPlaylist(String uri, Callback<Playlist> cb) {
+    public void getPlaylist(Uri uri, Callback<Playlist> cb) {
         awaitInitDone();
-        spotify.getPlaylist(me.id, uri, cb);
+        String[] parts = uri.toString().split(":");
+        spotify.getPlaylist(me.id, parts[parts.length-1], cb);
     }
 
     public void getPlaylists(Callback<List<PlaylistSimple>> cb) {
+        awaitInitDone();
         getPlaylists(cb, 0);
     }
 

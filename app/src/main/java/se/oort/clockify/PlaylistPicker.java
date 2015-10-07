@@ -1,8 +1,13 @@
 package se.oort.clockify;
 
 import android.app.ListActivity;
+import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +24,7 @@ public class PlaylistPicker extends ListActivity {
     private ArrayAdapter<PlaylistWrapper> listAdapter;
 
     private static class PlaylistWrapper {
-        private PlaylistSimple backend;
+        protected PlaylistSimple backend;
         public PlaylistWrapper(PlaylistSimple be) {
             this.backend = be;
         }
@@ -51,5 +56,21 @@ public class PlaylistPicker extends ListActivity {
 
         });
     }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        // TODO Auto-generated method stub
+        super.onListItemClick(l, v, position, id);
+
+        Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+
+        Uri uri = Uri.parse(listAdapter.getItem(position).backend.uri);
+
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI, uri);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
 
 }

@@ -1368,13 +1368,14 @@ public class AlarmClockFragment extends DeskClockFragment implements
         }
 
 
-        private String getRingToneTitle(Uri uri) {
+        private String getRingToneTitle(final Uri uri) {
             final CountDownLatch latch = new CountDownLatch(1);
             final List<String> name = new ArrayList<String>();
 
-            spotify.getPlaylist(uri.toString(), new Callback<Playlist>() {
+            spotify.getPlaylist(uri, new Callback<Playlist>() {
                 @Override
                 public void success(Playlist playlist, Response response) {
+                    android.util.Log.d("Clockify", "Loaded " + uri);
                     name.add(playlist.name);
                     latch.countDown();
                 }
