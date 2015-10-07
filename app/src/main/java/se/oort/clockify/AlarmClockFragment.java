@@ -152,8 +152,6 @@ public class AlarmClockFragment extends DeskClockFragment implements
     // Cached layout positions of items in listview prior to add/removal of alarm item
     private ConcurrentHashMap<Long, Integer> mItemIdTopMap = new ConcurrentHashMap<Long, Integer>();
 
-    private SpotifyProxy spotify = SpotifyProxy.getInstance();
-
     public AlarmClockFragment() {
         // Basic provider required by Fragment.java
     }
@@ -640,7 +638,7 @@ public class AlarmClockFragment extends DeskClockFragment implements
     private void launchRingTonePicker(Alarm alarm) {
         mSelectedAlarm = alarm;
         Uri oldRingtone = Alarm.NO_RINGTONE_URI.equals(alarm.alert) ? null : alarm.alert;
-        final Intent intent = new Intent(this.getContext(), PlaylistPicker.class);
+        final Intent intent = new Intent(this.getActivity(), PlaylistPicker.class);
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, oldRingtone);
         startActivityForResult(intent, REQUEST_CODE_RINGTONE);
     }

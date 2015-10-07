@@ -1,7 +1,9 @@
 package se.oort.clockify;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 
 import com.spotify.sdk.android.authentication.AuthenticationClient;
@@ -19,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Semaphore;
 
 import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyService;
@@ -36,6 +39,9 @@ import retrofit.client.Response;
 public class SpotifyProxy
         implements PlayerNotificationCallback, ConnectionStateCallback {
 
+    private static final String AUTH_TOKEN_PREFS = "se.oort.clockify.SpotifyProxy.PREFS";
+    private static final String AUTH_TOKEN_KEY = "se.oort.clockify.SpotifyProxy.AUTH_TOKEN_KEY";
+    private static final String USER_ID_KEY = "se.oort.clockify.SpotifyProxy.USER_ID_KEY";
     private static final String CLIENT_ID = "f38c5148ab234d2bb5b1ba78f49e7ded";
     private static final String REDIRECT_URI = "clockify://callback";
 
@@ -51,33 +57,56 @@ public class SpotifyProxy
     private Player mPlayer;
     private Activity activity;
     private SpotifyService spotify;
-    private UserPrivate me;
-    private CountDownLatch initLatch;
+    private CountDownLatch initDoneLatch = new CountDownLatch(1);
+    private Semaphore initInProgressSemaphore = new Semaphore(1);
+    private String userId;
 
     // Request code that will be used to verify if the result comes from correct activity
     // Can be any integer
     private static final int REQUEST_CODE = 1337;
 
     public void init(Activity activity) {
-        this.activity = activity;
+        android.util.Log.d("SpotifyProxy", "Initializing from activity");
+        try {
+            initInProgressSemaphore.acquire();
+        } catch(InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if (initDoneLatch.getCount() > 0) {
+            this.activity = activity;
 
-        AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
-                AuthenticationResponse.Type.TOKEN,
-                REDIRECT_URI);
-        builder.setScopes(new String[]{"user-read-private", "streaming"});
-        AuthenticationRequest request = builder.build();
+            AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
+                    AuthenticationResponse.Type.TOKEN,
+                    REDIRECT_URI);
+            builder.setScopes(new String[]{"user-read-private", "streaming"});
+            AuthenticationRequest request = builder.build();
 
-        initLatch = new CountDownLatch(1);
+            AuthenticationClient.openLoginActivity(activity, REQUEST_CODE, request);
+        } else {
+            initInProgressSemaphore.release();
+        }
+    }
 
-        AuthenticationClient.openLoginActivity(activity, REQUEST_CODE, request);
-
+    public void init(Context context) {
+        android.util.Log.d("SpotifyProxy", "Initializing from context");
+        try {
+            initInProgressSemaphore.acquire();
+        } catch(InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if (initDoneLatch.getCount() > 0) {
+            SharedPreferences prefs = context.getSharedPreferences(AUTH_TOKEN_PREFS, 0);
+            init(prefs.getString(AUTH_TOKEN_KEY, ""), prefs.getString(USER_ID_KEY, ""));
+        } else {
+            initInProgressSemaphore.release();
+        }
     }
 
     static final int maxPlaylistLimit = 50;
 
     private void awaitInitDone() {
         try {
-            initLatch.await();
+            initDoneLatch.await();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -87,13 +116,14 @@ public class SpotifyProxy
         final Map<String, Object> options = new HashMap<String, Object>();
         options.put("offset", offset);
         options.put("limit", maxPlaylistLimit);
-        spotify.getPlaylists(me.id, options, new Callback<Pager<PlaylistSimple>>() {
+        spotify.getPlaylists(userId, options, new Callback<Pager<PlaylistSimple>>() {
             public void success(Pager<PlaylistSimple> pager, Response response) {
                 if (pager.next != null) {
-                        getPlaylists(cb, offset + maxPlaylistLimit);
+                    getPlaylists(cb, offset + maxPlaylistLimit);
                 }
                 cb.success(pager.items, response);
             }
+
             public void failure(RetrofitError error) {
                 cb.failure(error);
             }
@@ -103,7 +133,7 @@ public class SpotifyProxy
     public void getPlaylist(Uri uri, Callback<Playlist> cb) {
         awaitInitDone();
         String[] parts = uri.toString().split(":");
-        spotify.getPlaylist(me.id, parts[parts.length-1], cb);
+        spotify.getPlaylist(userId, parts[parts.length-1], cb);
     }
 
     public void getPlaylists(Callback<List<PlaylistSimple>> cb) {
@@ -112,12 +142,16 @@ public class SpotifyProxy
     }
 
     public void play(String uri) {
+        android.util.Log.d("SpotifyProxy", "Asked to play " + uri);
         awaitInitDone();
+        android.util.Log.d("SpotifyProxy", "Starting");
         mPlayer.play(uri);
     }
 
     public void pause() {
+        android.util.Log.d("SpotifyProxy", "Asked to pause");
         awaitInitDone();
+        android.util.Log.d("SpotifyProxy", "Pausing");
         mPlayer.pause();
     }
 
@@ -125,35 +159,62 @@ public class SpotifyProxy
         // Check if result comes from the correct activity
         if (requestCode == REQUEST_CODE) {
             final AuthenticationResponse authResponse = AuthenticationClient.getResponse(resultCode, intent);
+            android.util.Log.d("Clockify", "Got auth response " + authResponse.getType());
             if (authResponse.getType() == AuthenticationResponse.Type.TOKEN) {
-                android.util.Log.d("Clockify", "Got auth response " + authResponse.getType());
+
                 SpotifyApi wrapper = new SpotifyApi();
                 wrapper.setAccessToken(authResponse.getAccessToken());
                 spotify = wrapper.getService();
+
                 spotify.getMe(new Callback<UserPrivate>() {
                     public void success(UserPrivate user, Response response) {
                         android.util.Log.d("Clockify", "Got me " + user);
-                        me = user;
-                        Config playerConfig = new Config(SpotifyProxy.this.activity, authResponse.getAccessToken(), CLIENT_ID);
-                        mPlayer = Spotify.getPlayer(playerConfig, this, new Player.InitializationObserver() {
-                            @Override
-                            public void onInitialized(Player player) {
-                                mPlayer.addConnectionStateCallback(SpotifyProxy.this);
-                                mPlayer.addPlayerNotificationCallback(SpotifyProxy.this);
-                                initLatch.countDown();
-                            }
-                            @Override
-                            public void onError(Throwable throwable) {
-                                android.util.Log.e("SpotifyProxy", "Could not initialize player: " + throwable.getMessage());
-                            }
-                        });
+                        SharedPreferences prefs = activity.getSharedPreferences(AUTH_TOKEN_PREFS, 0);
+                        prefs.
+                                edit().
+                                putString(AUTH_TOKEN_KEY, authResponse.getAccessToken()).
+                                putString(USER_ID_KEY, user.id).
+                                apply();
+                        init(authResponse.getAccessToken(), user.id);
                     }
+
                     public void failure(RetrofitError error) {
+                        initDoneLatch.countDown();
+                        initInProgressSemaphore.release();
                         android.util.Log.d("Clockify", "Failure fetching me: " + error);
                     }
                 });
             }
         }
+    }
+
+    private void init(String accessToken, String userId) {
+        android.util.Log.d("SpotifyProxy", "Init with access token " + accessToken + " and userId " + userId);
+
+        if (spotify == null) {
+            SpotifyApi wrapper = new SpotifyApi();
+            wrapper.setAccessToken(accessToken);
+            spotify = wrapper.getService();
+        }
+
+        this.userId = userId;
+
+        Config playerConfig = new Config(SpotifyProxy.this.activity, accessToken, CLIENT_ID);
+        mPlayer = Spotify.getPlayer(playerConfig, this, new Player.InitializationObserver() {
+            @Override
+            public void onInitialized(Player player) {
+                mPlayer.addConnectionStateCallback(SpotifyProxy.this);
+                mPlayer.addPlayerNotificationCallback(SpotifyProxy.this);
+                initDoneLatch.countDown();
+                initInProgressSemaphore.release();
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                initDoneLatch.countDown();
+                android.util.Log.e("SpotifyProxy", "Could not initialize player: " + throwable.getMessage());
+            }
+        });
     }
 
     @Override

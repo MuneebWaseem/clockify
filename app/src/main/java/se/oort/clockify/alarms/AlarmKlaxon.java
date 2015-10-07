@@ -27,6 +27,7 @@ import android.os.Vibrator;
 
 import se.oort.clockify.Log;
 import se.oort.clockify.R;
+import se.oort.clockify.SpotifyProxy;
 import se.oort.clockify.provider.AlarmInstance;
 
 import java.io.IOException;
@@ -42,12 +43,16 @@ public class AlarmKlaxon {
 
     private static boolean sStarted = false;
     private static MediaPlayer sMediaPlayer = null;
+    private static SpotifyProxy spotify = SpotifyProxy.getInstance();
 
     public static void stop(Context context) {
         Log.v("AlarmKlaxon.stop()");
 
+        spotify.init(context);
+
         if (sStarted) {
             sStarted = false;
+            spotify.pause();
             // Stop audio playing
             if (sMediaPlayer != null) {
                 sMediaPlayer.stop();
@@ -65,18 +70,24 @@ public class AlarmKlaxon {
     public static void start(final Context context, AlarmInstance instance,
             boolean inTelephoneCall) {
         Log.v("AlarmKlaxon.start()");
+
+        spotify.init(context);
+
         // Make sure we are stop before starting
         stop(context);
 
         if (!AlarmInstance.NO_RINGTONE_URI.equals(instance.mRingtone)) {
             Uri alarmNoise = instance.mRingtone;
+            boolean spotifyPlaying = false;
             // Fall back on the default alarm if the database does not have an
-            // alarm stored.
+            // alarm stored.<
             if (alarmNoise == null) {
                 alarmNoise = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
                 if (Log.LOGV) {
                     Log.v("Using default alarm: " + alarmNoise.toString());
                 }
+            } else {
+                spotifyPlaying = true;
             }
 
             // TODO: Reuse mMediaPlayer instead of creating a new one and/or use RingtoneManager.
@@ -96,20 +107,29 @@ public class AlarmKlaxon {
                 if (inTelephoneCall) {
                     Log.v("Using the in-call alarm");
                     sMediaPlayer.setVolume(IN_CALL_VOLUME, IN_CALL_VOLUME);
-                    setDataSourceFromResource(context, sMediaPlayer, R.raw.in_call_alarm);
+                    if (spotifyPlaying) {
+                        AudioManager audio = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+                        audio.setStreamVolume(AudioManager.STREAM_MUSIC,
+                                (int) (IN_CALL_VOLUME * audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC)),
+                                0);
+                    } else {
+                        setDataSourceFromResource(context, sMediaPlayer, R.raw.in_call_alarm);
+                    }
                 } else {
-                    sMediaPlayer.setDataSource(context, alarmNoise);
+                    if (!spotifyPlaying) {
+                        sMediaPlayer.setDataSource(context, alarmNoise);
+                    }
                 }
-                startAlarm(context, sMediaPlayer);
+                startAlarm(context, sMediaPlayer, spotifyPlaying, alarmNoise);
             } catch (Exception ex) {
-                Log.v("Using the fallback ringtone");
+                Log.v("Using the fallback ringtone: " + ex);
                 // The alarmNoise may be on the sd card which could be busy right
                 // now. Use the fallback ringtone.
                 try {
                     // Must reset the media player to clear the error state.
                     sMediaPlayer.reset();
                     setDataSourceFromResource(context, sMediaPlayer, R.raw.fallbackring);
-                    startAlarm(context, sMediaPlayer);
+                    startAlarm(context, sMediaPlayer, spotifyPlaying, alarmNoise);
                 } catch (Exception ex2) {
                     // At this point we just don't play anything.
                     Log.e("Failed to play fallback ringtone", ex2);
@@ -126,16 +146,21 @@ public class AlarmKlaxon {
     }
 
     // Do the common stuff when starting the alarm.
-    private static void startAlarm(Context context, MediaPlayer player) throws IOException {
-        AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-        // do not play alarms if stream volume is 0 (typically because ringer mode is silent).
-        if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
-            player.setAudioStreamType(AudioManager.STREAM_ALARM);
-            player.setLooping(true);
-            player.prepare();
-            audioManager.requestAudioFocus(null,
-                    AudioManager.STREAM_ALARM, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
-            player.start();
+    private static void startAlarm(Context context, MediaPlayer player, boolean spotifyPlaying, Uri uri) throws IOException {
+        if (spotifyPlaying) {
+            String[] parts = uri.toString().split("/");
+            spotify.play(parts[0]);
+        } else {
+            AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+            // do not play alarms if stream volume is 0 (typically because ringer mode is silent).
+            if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
+                player.setAudioStreamType(AudioManager.STREAM_ALARM);
+                player.setLooping(true);
+                player.prepare();
+                audioManager.requestAudioFocus(null,
+                        AudioManager.STREAM_ALARM, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                player.start();
+            }
         }
     }
 
