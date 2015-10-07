@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyService;
@@ -49,6 +50,7 @@ public class SpotifyProxy
     private Activity activity;
     private SpotifyService spotify;
     private UserPrivate me;
+    private CountDownLatch initLatch;
 
     // Request code that will be used to verify if the result comes from correct activity
     // Can be any integer
@@ -63,12 +65,24 @@ public class SpotifyProxy
         builder.setScopes(new String[]{"user-read-private", "streaming"});
         AuthenticationRequest request = builder.build();
 
+        initLatch = new CountDownLatch(1);
+
         AuthenticationClient.openLoginActivity(activity, REQUEST_CODE, request);
+
     }
 
     static final int maxPlaylistLimit = 50;
 
+    private void awaitInitDone() {
+        try {
+            initLatch.await();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void getPlaylists(final Callback<List<PlaylistSimple>> cb, final int offset) {
+        awaitInitDone();
         final Map<String, Object> options = new HashMap<String, Object>();
         options.put("offset", offset);
         options.put("limit", maxPlaylistLimit);
@@ -90,10 +104,12 @@ public class SpotifyProxy
     }
 
     public void play(String uri) {
+        awaitInitDone();
         mPlayer.play(uri);
     }
 
     public void pause() {
+        awaitInitDone();
         mPlayer.pause();
     }
 
@@ -116,6 +132,7 @@ public class SpotifyProxy
                             public void onInitialized(Player player) {
                                 mPlayer.addConnectionStateCallback(SpotifyProxy.this);
                                 mPlayer.addPlayerNotificationCallback(SpotifyProxy.this);
+                                initLatch.countDown();
                             }
                             @Override
                             public void onError(Throwable throwable) {
