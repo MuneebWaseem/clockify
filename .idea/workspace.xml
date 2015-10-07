@@ -10,77 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2982720-a7cf-49a4-825a-ec244e70f4e0" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-af/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-am/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-ar/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-az-rAZ/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-az/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-be/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-bg/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-ca/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-cs/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-da/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-de/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-el/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-en-rGB/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-en-rIN/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-es-rUS/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-es/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-et-rEE/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-et/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-fa/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-fi/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-fr-rCA/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-fr/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-hi/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-hr/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-hu/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-hy-rAM/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-hy/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-in/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-it/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-iw/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-ja/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-ka-rGE/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-ka/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-km-rKH/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-km/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-ko/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-lo-rLA/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-lo/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-lt/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-lv/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-mn-rMN/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-mn/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-ms-rMY/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-ms/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-nb/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-ne-rNP/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-ne/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-nl/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-pl/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-pt-rPT/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-pt/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-rm/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-ro/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-ru/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-si-rLK/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-si/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-sk/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-sl/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-sr/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-sv/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-sw/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-sw600dp/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-th/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-tl/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-tr/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-uk/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-vi/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-zh-rCN/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-zh-rHK/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-zh-rTW/strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-zu/strings.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="clockify.iws" />
@@ -108,17 +39,36 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="221" column="32" selection-start-line="221" selection-start-column="32" selection-end-line="221" selection-end-column="32" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#2018#2019#0" expanded="false" />
+                <element signature="e#2049#2050#0" expanded="false" />
+                <element signature="e#5033#5034#0" expanded="false" />
+                <element signature="e#5082#5083#0" expanded="false" />
+                <element signature="e#8671#8672#0" expanded="false" />
+                <element signature="e#8739#8740#0" expanded="false" />
+                <element signature="e#8786#8787#0" expanded="false" />
+                <element signature="e#8855#8856#0" expanded="false" />
+                <element signature="e#9688#9689#0" expanded="false" />
+                <element signature="e#9731#9732#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="values.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="values.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/clockify/datetimepicker/unspecified/res/values/values.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.08777969">
+            <state vertical-scroll-proportion="-3.6666667">
               <caret line="80" column="53" selection-start-line="80" selection-start-column="53" selection-end-line="80" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.2713816">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -130,7 +80,10 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#832#833#0" expanded="false" />
+                <element signature="e#873#874#0" expanded="false" />
+                <element signature="e#1227#1228#0" expanded="false" />
+                <element signature="e#1270#1271#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -142,7 +95,33 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#0#80928#0" expanded="false" />
+                <element signature="e#8703#8704#0" expanded="false" />
+                <element signature="e#8755#8756#0" expanded="false" />
+                <element signature="e#9884#9885#0" expanded="false" />
+                <element signature="e#9954#9955#0" expanded="false" />
+                <element signature="e#10160#10161#0" expanded="false" />
+                <element signature="e#10227#10228#0" expanded="false" />
+                <element signature="e#26198#26199#0" expanded="false" />
+                <element signature="e#26239#26240#0" expanded="false" />
+                <element signature="e#32110#32111#0" expanded="false" />
+                <element signature="e#32160#32161#0" expanded="false" />
+                <element signature="e#50349#50350#0" expanded="false" />
+                <element signature="e#50450#50451#0" expanded="false" />
+                <element signature="e#51821#51822#0" expanded="false" />
+                <element signature="e#51883#51884#0" expanded="false" />
+                <element signature="e#57295#57296#0" expanded="false" />
+                <element signature="e#57362#57363#0" expanded="false" />
+                <element signature="e#59054#59055#0" expanded="false" />
+                <element signature="e#59107#59108#0" expanded="false" />
+                <element signature="e#59864#59865#0" expanded="false" />
+                <element signature="e#59910#59911#0" expanded="false" />
+                <element signature="e#67578#67579#0" expanded="false" />
+                <element signature="e#67637#67638#0" expanded="false" />
+                <element signature="e#73265#73266#0" expanded="false" />
+                <element signature="e#73297#73298#0" expanded="false" />
+                <element signature="e#74607#74608#0" expanded="false" />
+                <element signature="e#74660#74661#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -153,7 +132,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="76" column="22" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
-              <folding />
+              <folding>
+                <element signature="e#0#7063#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -163,7 +145,12 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
-              <folding />
+              <folding>
+                <element signature="e#0#7071#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#7040#7041#0" expanded="false" />
+                <element signature="e#7067#7068#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -173,7 +160,22 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="92" column="46" selection-start-line="92" selection-start-column="39" selection-end-line="92" selection-end-column="46" />
-              <folding />
+              <folding>
+                <element signature="e#0#11532#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#3731#3732#0" expanded="false" />
+                <element signature="e#3785#3786#0" expanded="false" />
+                <element signature="e#7104#7105#0" expanded="false" />
+                <element signature="e#7147#7148#0" expanded="false" />
+                <element signature="e#7192#7193#0" expanded="false" />
+                <element signature="e#7238#7239#0" expanded="false" />
+                <element signature="e#7615#7616#0" expanded="false" />
+                <element signature="e#7641#7642#0" expanded="false" />
+                <element signature="e#9524#9525#0" expanded="false" />
+                <element signature="e#9548#9549#0" expanded="false" />
+                <element signature="e#11008#11009#0" expanded="false" />
+                <element signature="e#11058#11059#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -198,6 +200,10 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="$USER_HOME$/Documents/zond.keystore" />
+    <option name="KEY_ALIAS" value="mykey" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -2088,7 +2094,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="10109452887000" />
+        <entry key="$PROJECT_DIR$" value="10109485116000" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2762,7 +2768,6 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_playlist_picker.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/DeskClock.java" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/provider/Alarm.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/AlarmClockFragment.java" />
@@ -2770,6 +2775,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmKlaxon.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SpotifyProxy.java" />
         <option value="$PROJECT_DIR$/app/build/intermediates/exploded-aar/clockify/datetimepicker/unspecified/res/values/values.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
       </list>
     </option>
   </component>
@@ -2805,6 +2811,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2823,120 +2830,26 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clockify" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clockify" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clockify" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clockify" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clockify" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clockify" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clockify" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alarms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clockify" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manifests" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="android.dex.compiler" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../spoticlock" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/build/outputs/apk" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="TA99303CKD" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_23_x86" />
     <property name="FullScreen" value="false" />
+    <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app/build/outputs/apk" />
+    <property name="ExportApk.Flavors" value="" />
+    <property name="ExportApk.BuildType" value="release" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
@@ -3156,11 +3069,10 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37150466" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15312916" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15312916" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22797526" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31158456" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -3172,6 +3084,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33462134" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31158456" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -3195,10 +3108,27 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SpotifyProxy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="221" column="32" selection-start-line="221" selection-start-column="32" selection-end-line="221" selection-end-column="32" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2018#2019#0" expanded="false" />
+            <element signature="e#2049#2050#0" expanded="false" />
+            <element signature="e#5033#5034#0" expanded="false" />
+            <element signature="e#5082#5083#0" expanded="false" />
+            <element signature="e#8671#8672#0" expanded="false" />
+            <element signature="e#8739#8740#0" expanded="false" />
+            <element signature="e#8786#8787#0" expanded="false" />
+            <element signature="e#8855#8856#0" expanded="false" />
+            <element signature="e#9688#9689#0" expanded="false" />
+            <element signature="e#9731#9732#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/clockify/datetimepicker/unspecified/res/values/values.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3207,7 +3137,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#832#833#0" expanded="false" />
+            <element signature="e#873#874#0" expanded="false" />
+            <element signature="e#1227#1228#0" expanded="false" />
+            <element signature="e#1270#1271#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3217,7 +3150,33 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#80928#0" expanded="false" />
+            <element signature="e#8703#8704#0" expanded="false" />
+            <element signature="e#8755#8756#0" expanded="false" />
+            <element signature="e#9884#9885#0" expanded="false" />
+            <element signature="e#9954#9955#0" expanded="false" />
+            <element signature="e#10160#10161#0" expanded="false" />
+            <element signature="e#10227#10228#0" expanded="false" />
+            <element signature="e#26198#26199#0" expanded="false" />
+            <element signature="e#26239#26240#0" expanded="false" />
+            <element signature="e#32110#32111#0" expanded="false" />
+            <element signature="e#32160#32161#0" expanded="false" />
+            <element signature="e#50349#50350#0" expanded="false" />
+            <element signature="e#50450#50451#0" expanded="false" />
+            <element signature="e#51821#51822#0" expanded="false" />
+            <element signature="e#51883#51884#0" expanded="false" />
+            <element signature="e#57295#57296#0" expanded="false" />
+            <element signature="e#57362#57363#0" expanded="false" />
+            <element signature="e#59054#59055#0" expanded="false" />
+            <element signature="e#59107#59108#0" expanded="false" />
+            <element signature="e#59864#59865#0" expanded="false" />
+            <element signature="e#59910#59911#0" expanded="false" />
+            <element signature="e#67578#67579#0" expanded="false" />
+            <element signature="e#67637#67638#0" expanded="false" />
+            <element signature="e#73265#73266#0" expanded="false" />
+            <element signature="e#73297#73298#0" expanded="false" />
+            <element signature="e#74607#74608#0" expanded="false" />
+            <element signature="e#74660#74661#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3226,7 +3185,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="76" column="22" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
-          <folding />
+          <folding>
+            <element signature="e#0#7063#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3234,7 +3196,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
-          <folding />
+          <folding>
+            <element signature="e#0#7071#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#7040#7041#0" expanded="false" />
+            <element signature="e#7067#7068#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3242,7 +3209,147 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="92" column="46" selection-start-line="92" selection-start-column="39" selection-end-line="92" selection-end-column="46" />
-          <folding />
+          <folding>
+            <element signature="e#0#11532#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3731#3732#0" expanded="false" />
+            <element signature="e#3785#3786#0" expanded="false" />
+            <element signature="e#7104#7105#0" expanded="false" />
+            <element signature="e#7147#7148#0" expanded="false" />
+            <element signature="e#7192#7193#0" expanded="false" />
+            <element signature="e#7238#7239#0" expanded="false" />
+            <element signature="e#7615#7616#0" expanded="false" />
+            <element signature="e#7641#7642#0" expanded="false" />
+            <element signature="e#9524#9525#0" expanded="false" />
+            <element signature="e#9548#9549#0" expanded="false" />
+            <element signature="e#11008#11009#0" expanded="false" />
+            <element signature="e#11058#11059#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/DeskClock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="48" selection-start-line="79" selection-start-column="48" selection-end-line="79" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SpotifyProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#2018#2019#0" expanded="false" />
+            <element signature="e#2049#2050#0" expanded="false" />
+            <element signature="e#5033#5034#0" expanded="false" />
+            <element signature="e#5082#5083#0" expanded="false" />
+            <element signature="e#8671#8672#0" expanded="false" />
+            <element signature="e#8739#8740#0" expanded="false" />
+            <element signature="e#8786#8787#0" expanded="false" />
+            <element signature="e#8855#8856#0" expanded="false" />
+            <element signature="e#9688#9689#0" expanded="false" />
+            <element signature="e#9731#9732#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/PlaylistPicker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
+          <folding>
+            <element signature="e#832#833#0" expanded="false" />
+            <element signature="e#873#874#0" expanded="false" />
+            <element signature="e#1227#1228#0" expanded="false" />
+            <element signature="e#1270#1271#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/AlarmClockFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#80928#0" expanded="false" />
+            <element signature="e#8703#8704#0" expanded="false" />
+            <element signature="e#8755#8756#0" expanded="false" />
+            <element signature="e#9884#9885#0" expanded="false" />
+            <element signature="e#9954#9955#0" expanded="false" />
+            <element signature="e#10160#10161#0" expanded="false" />
+            <element signature="e#10227#10228#0" expanded="false" />
+            <element signature="e#26198#26199#0" expanded="false" />
+            <element signature="e#26239#26240#0" expanded="false" />
+            <element signature="e#32110#32111#0" expanded="false" />
+            <element signature="e#32160#32161#0" expanded="false" />
+            <element signature="e#50349#50350#0" expanded="false" />
+            <element signature="e#50450#50451#0" expanded="false" />
+            <element signature="e#51821#51822#0" expanded="false" />
+            <element signature="e#51883#51884#0" expanded="false" />
+            <element signature="e#57295#57296#0" expanded="false" />
+            <element signature="e#57362#57363#0" expanded="false" />
+            <element signature="e#59054#59055#0" expanded="false" />
+            <element signature="e#59107#59108#0" expanded="false" />
+            <element signature="e#59864#59865#0" expanded="false" />
+            <element signature="e#59910#59911#0" expanded="false" />
+            <element signature="e#67578#67579#0" expanded="false" />
+            <element signature="e#67637#67638#0" expanded="false" />
+            <element signature="e#73265#73266#0" expanded="false" />
+            <element signature="e#73297#73298#0" expanded="false" />
+            <element signature="e#74607#74608#0" expanded="false" />
+            <element signature="e#74660#74661#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmKlaxon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="76" column="22" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#7063#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#7071#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#7040#7041#0" expanded="false" />
+            <element signature="e#7067#7068#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/provider/Alarm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="92" column="46" selection-start-line="92" selection-start-column="39" selection-end-line="92" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#11532#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3731#3732#0" expanded="false" />
+            <element signature="e#3785#3786#0" expanded="false" />
+            <element signature="e#7104#7105#0" expanded="false" />
+            <element signature="e#7147#7148#0" expanded="false" />
+            <element signature="e#7192#7193#0" expanded="false" />
+            <element signature="e#7238#7239#0" expanded="false" />
+            <element signature="e#7615#7616#0" expanded="false" />
+            <element signature="e#7641#7642#0" expanded="false" />
+            <element signature="e#9524#9525#0" expanded="false" />
+            <element signature="e#9548#9549#0" expanded="false" />
+            <element signature="e#11008#11009#0" expanded="false" />
+            <element signature="e#11058#11059#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3261,7 +3368,16 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2018#2019#0" expanded="false" />
+            <element signature="e#2049#2050#0" expanded="false" />
+            <element signature="e#5033#5034#0" expanded="false" />
+            <element signature="e#5082#5083#0" expanded="false" />
+            <element signature="e#8671#8672#0" expanded="false" />
+            <element signature="e#8739#8740#0" expanded="false" />
+            <element signature="e#8786#8787#0" expanded="false" />
+            <element signature="e#8855#8856#0" expanded="false" />
+            <element signature="e#9688#9689#0" expanded="false" />
+            <element signature="e#9731#9732#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3310,7 +3426,33 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="627" column="0" selection-start-line="627" selection-start-column="0" selection-end-line="627" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#80928#0" expanded="false" />
+            <element signature="e#8703#8704#0" expanded="false" />
+            <element signature="e#8755#8756#0" expanded="false" />
+            <element signature="e#9884#9885#0" expanded="false" />
+            <element signature="e#9954#9955#0" expanded="false" />
+            <element signature="e#10160#10161#0" expanded="false" />
+            <element signature="e#10227#10228#0" expanded="false" />
+            <element signature="e#26198#26199#0" expanded="false" />
+            <element signature="e#26239#26240#0" expanded="false" />
+            <element signature="e#32110#32111#0" expanded="false" />
+            <element signature="e#32160#32161#0" expanded="false" />
+            <element signature="e#50349#50350#0" expanded="false" />
+            <element signature="e#50450#50451#0" expanded="false" />
+            <element signature="e#51821#51822#0" expanded="false" />
+            <element signature="e#51883#51884#0" expanded="false" />
+            <element signature="e#57295#57296#0" expanded="false" />
+            <element signature="e#57362#57363#0" expanded="false" />
+            <element signature="e#59054#59055#0" expanded="false" />
+            <element signature="e#59107#59108#0" expanded="false" />
+            <element signature="e#59864#59865#0" expanded="false" />
+            <element signature="e#59910#59911#0" expanded="false" />
+            <element signature="e#67578#67579#0" expanded="false" />
+            <element signature="e#67637#67638#0" expanded="false" />
+            <element signature="e#73265#73266#0" expanded="false" />
+            <element signature="e#73297#73298#0" expanded="false" />
+            <element signature="e#74607#74608#0" expanded="false" />
+            <element signature="e#74660#74661#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3320,7 +3462,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="28" column="55" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#832#833#0" expanded="false" />
+            <element signature="e#873#874#0" expanded="false" />
+            <element signature="e#1227#1228#0" expanded="false" />
+            <element signature="e#1270#1271#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3339,13 +3484,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.8907923">
           <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="46" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -3387,58 +3525,58 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw600dp-land/alarm_clock.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/alarm_alert_fullscreen.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/alarm_alert.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/alarm_time.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/alarm_clock.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/android/media/RingtoneManager.java">
@@ -3452,7 +3590,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="92" column="46" selection-start-line="92" selection-start-column="39" selection-end-line="92" selection-end-column="46" />
-          <folding />
+          <folding>
+            <element signature="e#0#11532#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3731#3732#0" expanded="false" />
+            <element signature="e#3785#3786#0" expanded="false" />
+            <element signature="e#7104#7105#0" expanded="false" />
+            <element signature="e#7147#7148#0" expanded="false" />
+            <element signature="e#7192#7193#0" expanded="false" />
+            <element signature="e#7238#7239#0" expanded="false" />
+            <element signature="e#7615#7616#0" expanded="false" />
+            <element signature="e#7641#7642#0" expanded="false" />
+            <element signature="e#9524#9525#0" expanded="false" />
+            <element signature="e#9548#9549#0" expanded="false" />
+            <element signature="e#11008#11009#0" expanded="false" />
+            <element signature="e#11058#11059#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3496,7 +3649,33 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#80928#0" expanded="false" />
+            <element signature="e#8703#8704#0" expanded="false" />
+            <element signature="e#8755#8756#0" expanded="false" />
+            <element signature="e#9884#9885#0" expanded="false" />
+            <element signature="e#9954#9955#0" expanded="false" />
+            <element signature="e#10160#10161#0" expanded="false" />
+            <element signature="e#10227#10228#0" expanded="false" />
+            <element signature="e#26198#26199#0" expanded="false" />
+            <element signature="e#26239#26240#0" expanded="false" />
+            <element signature="e#32110#32111#0" expanded="false" />
+            <element signature="e#32160#32161#0" expanded="false" />
+            <element signature="e#50349#50350#0" expanded="false" />
+            <element signature="e#50450#50451#0" expanded="false" />
+            <element signature="e#51821#51822#0" expanded="false" />
+            <element signature="e#51883#51884#0" expanded="false" />
+            <element signature="e#57295#57296#0" expanded="false" />
+            <element signature="e#57362#57363#0" expanded="false" />
+            <element signature="e#59054#59055#0" expanded="false" />
+            <element signature="e#59107#59108#0" expanded="false" />
+            <element signature="e#59864#59865#0" expanded="false" />
+            <element signature="e#59910#59911#0" expanded="false" />
+            <element signature="e#67578#67579#0" expanded="false" />
+            <element signature="e#67637#67638#0" expanded="false" />
+            <element signature="e#73265#73266#0" expanded="false" />
+            <element signature="e#73297#73298#0" expanded="false" />
+            <element signature="e#74607#74608#0" expanded="false" />
+            <element signature="e#74660#74661#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3523,7 +3702,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#832#833#0" expanded="false" />
+            <element signature="e#873#874#0" expanded="false" />
+            <element signature="e#1227#1228#0" expanded="false" />
+            <element signature="e#1270#1271#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3532,7 +3714,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
-          <folding />
+          <folding>
+            <element signature="e#0#7071#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#7040#7041#0" expanded="false" />
+            <element signature="e#7067#7068#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3540,7 +3727,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="76" column="22" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
-          <folding />
+          <folding>
+            <element signature="e#0#7063#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3549,15 +3739,32 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="221" column="32" selection-start-line="221" selection-start-column="32" selection-end-line="221" selection-end-column="32" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2018#2019#0" expanded="false" />
+            <element signature="e#2049#2050#0" expanded="false" />
+            <element signature="e#5033#5034#0" expanded="false" />
+            <element signature="e#5082#5083#0" expanded="false" />
+            <element signature="e#8671#8672#0" expanded="false" />
+            <element signature="e#8739#8740#0" expanded="false" />
+            <element signature="e#8786#8787#0" expanded="false" />
+            <element signature="e#8855#8856#0" expanded="false" />
+            <element signature="e#9688#9689#0" expanded="false" />
+            <element signature="e#9731#9732#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/clockify/datetimepicker/unspecified/res/values/values.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08777969">
+        <state vertical-scroll-proportion="-3.6666667">
           <caret line="80" column="53" selection-start-line="80" selection-start-column="53" selection-end-line="80" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2713816">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
