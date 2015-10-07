@@ -651,7 +651,7 @@ public class AlarmClockFragment extends DeskClockFragment implements
             uri = Alarm.NO_RINGTONE_URI;
         }
         mSelectedAlarm.alert = uri;
-
+        android.util.Log.d("Clockify", "Got ringtone " + uri);
         asyncUpdateAlarm(mSelectedAlarm, false);
     }
 
@@ -1368,31 +1368,9 @@ public class AlarmClockFragment extends DeskClockFragment implements
         }
 
 
-        private String getRingToneTitle(final Uri uri) {
-            final CountDownLatch latch = new CountDownLatch(1);
-            final List<String> name = new ArrayList<String>();
-
-            spotify.getPlaylist(uri, new Callback<Playlist>() {
-                @Override
-                public void success(Playlist playlist, Response response) {
-                    android.util.Log.d("Clockify", "Loaded " + uri);
-                    name.add(playlist.name);
-                    latch.countDown();
-                }
-                @Override
-                public void failure(RetrofitError error) {
-                    android.util.Log.d("Clockify", "Unable to fetch playlist: " + error);
-                    name.add("-");
-                    latch.countDown();
-                }
-            });
-
-            try {
-                latch.await();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            return name.get(0);
+        private String getRingToneTitle(Uri uri) {
+            String[] parts = uri.toString().split("/");
+            return Uri.decode(parts[1]);
         }
 
         public void setNewAlarm(long alarmId) {

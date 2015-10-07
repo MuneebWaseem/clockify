@@ -65,7 +65,8 @@ public class PlaylistPicker extends ListActivity {
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
 
-        Uri uri = Uri.parse(listAdapter.getItem(position).backend.uri);
+        PlaylistSimple playlist = listAdapter.getItem(position).backend;
+        Uri uri = Uri.parse(playlist.uri + "/" + Uri.encode(playlist.name));
 
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI, uri);
         setResult(RESULT_OK, intent);
