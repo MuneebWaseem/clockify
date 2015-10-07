@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.klinker.deskclock"
+        package="se.oort.clockify"
         android:versionCode="301" android:versionName="3.0.0">
 
     <original-package android:name="com.android.alarmclock" />
@@ -21,7 +21,7 @@
                  android:supportsRtl="true">
 
         <provider android:name=".provider.ClockProvider"
-                android:authorities="com.klinker.deskclock"
+                android:authorities="se.oort.clockify"
                 android:exported="false" />
 
         <activity android:name="DeskClock"
@@ -159,7 +159,7 @@
         <!-- This activity is basically like the TimerFragment in DeskClock
          but only during lock screen
          so that is only has the fired timers -->
-        <activity android:name="com.klinker.deskclock.timer.TimerAlertFullScreen"
+        <activity android:name="se.oort.clockify.timer.TimerAlertFullScreen"
                 android:excludeFromRecents="true"
                 android:theme="@style/AlarmAlertFullScreenTheme"
                 android:launchMode="singleInstance"
@@ -175,7 +175,7 @@
             </intent-filter>
         </service>
 
-        <receiver android:name="com.klinker.deskclock.timer.TimerReceiver"
+        <receiver android:name="se.oort.clockify.timer.TimerReceiver"
                 android:exported="false">
             <intent-filter>
                 <action android:name="start_timer" />
@@ -194,7 +194,7 @@
             </intent-filter>
         </receiver>
 
-        <service android:name="com.klinker.deskclock.stopwatch.StopwatchService"
+        <service android:name="se.oort.clockify.stopwatch.StopwatchService"
                 android:exported="false"
                 android:description="@string/stopwatch_service_desc">
             <intent-filter>
