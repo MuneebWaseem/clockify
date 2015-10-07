@@ -10,9 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2982720-a7cf-49a4-825a-ec244e70f4e0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/AlarmClockFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/AlarmClockFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmKlaxon.java" afterPath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmKlaxon.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/PlaylistPicker.java" afterPath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/PlaylistPicker.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SpotifyProxy.java" afterPath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SpotifyProxy.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -38,17 +35,19 @@
       <file leaf-file-name="SpotifyProxy.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SpotifyProxy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.135">
-              <caret line="197" column="9" selection-start-line="197" selection-start-column="9" selection-end-line="197" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.8263889">
+              <caret line="221" column="32" selection-start-line="221" selection-start-column="32" selection-end-line="221" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4273#4289#0" expanded="true" />
-                <element signature="e#8485#8486#0" expanded="true" />
-                <element signature="e#8553#8554#0" expanded="true" />
-                <element signature="e#8600#8601#0" expanded="true" />
-                <element signature="e#8669#8670#0" expanded="true" />
-                <element signature="e#9502#9503#0" expanded="true" />
-                <element signature="e#9545#9546#0" expanded="true" />
+                <element signature="e#4514#4530#0" expanded="true" />
+                <element signature="e#5033#5034#0" expanded="true" />
+                <element signature="e#5082#5083#0" expanded="true" />
+                <element signature="e#8671#8672#0" expanded="true" />
+                <element signature="e#8739#8740#0" expanded="true" />
+                <element signature="e#8786#8787#0" expanded="true" />
+                <element signature="e#8855#8856#0" expanded="true" />
+                <element signature="e#9688#9689#0" expanded="true" />
+                <element signature="e#9731#9732#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -3077,7 +3076,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="2" y="23" width="1336" height="867" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756326" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3091,7 +3090,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37150466" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4300932" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38748336" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22797526" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -3124,13 +3123,15 @@
           <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4273#4289#0" expanded="true" />
-            <element signature="e#8485#8486#0" expanded="true" />
-            <element signature="e#8553#8554#0" expanded="true" />
-            <element signature="e#8600#8601#0" expanded="true" />
-            <element signature="e#8669#8670#0" expanded="true" />
-            <element signature="e#9502#9503#0" expanded="true" />
-            <element signature="e#9545#9546#0" expanded="true" />
+            <element signature="e#4514#4530#0" expanded="true" />
+            <element signature="e#5033#5034#0" expanded="true" />
+            <element signature="e#5082#5083#0" expanded="true" />
+            <element signature="e#8671#8672#0" expanded="true" />
+            <element signature="e#8739#8740#0" expanded="true" />
+            <element signature="e#8786#8787#0" expanded="true" />
+            <element signature="e#8855#8856#0" expanded="true" />
+            <element signature="e#9688#9689#0" expanded="true" />
+            <element signature="e#9731#9732#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3465,17 +3466,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SpotifyProxy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.135">
-          <caret line="197" column="9" selection-start-line="197" selection-start-column="9" selection-end-line="197" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.8263889">
+          <caret line="221" column="32" selection-start-line="221" selection-start-column="32" selection-end-line="221" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4273#4289#0" expanded="true" />
-            <element signature="e#8485#8486#0" expanded="true" />
-            <element signature="e#8553#8554#0" expanded="true" />
-            <element signature="e#8600#8601#0" expanded="true" />
-            <element signature="e#8669#8670#0" expanded="true" />
-            <element signature="e#9502#9503#0" expanded="true" />
-            <element signature="e#9545#9546#0" expanded="true" />
+            <element signature="e#4514#4530#0" expanded="true" />
+            <element signature="e#5033#5034#0" expanded="true" />
+            <element signature="e#5082#5083#0" expanded="true" />
+            <element signature="e#8671#8672#0" expanded="true" />
+            <element signature="e#8739#8740#0" expanded="true" />
+            <element signature="e#8786#8787#0" expanded="true" />
+            <element signature="e#8855#8856#0" expanded="true" />
+            <element signature="e#9688#9689#0" expanded="true" />
+            <element signature="e#9731#9732#0" expanded="true" />
           </folding>
         </state>
       </provider>

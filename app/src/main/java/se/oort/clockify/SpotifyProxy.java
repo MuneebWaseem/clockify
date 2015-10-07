@@ -57,8 +57,8 @@ public class SpotifyProxy
     private Player mPlayer;
     private Activity activity;
     private SpotifyService spotify;
+    private Semaphore initSemaphore = new Semaphore(1);
     private CountDownLatch initDoneLatch = new CountDownLatch(1);
-    private Semaphore initInProgressSemaphore = new Semaphore(1);
     private String userId;
 
     // Request code that will be used to verify if the result comes from correct activity
@@ -68,11 +68,12 @@ public class SpotifyProxy
     public void init(Activity activity) {
         android.util.Log.d("SpotifyProxy", "Initializing from activity");
         try {
-            initInProgressSemaphore.acquire();
+            initSemaphore.acquire();
         } catch(InterruptedException e) {
             throw new RuntimeException(e);
         }
         if (initDoneLatch.getCount() > 0) {
+            android.util.Log.d("SpotifyProxy", "Starting init flow");
             this.activity = activity;
 
             AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
@@ -83,22 +84,25 @@ public class SpotifyProxy
 
             AuthenticationClient.openLoginActivity(activity, REQUEST_CODE, request);
         } else {
-            initInProgressSemaphore.release();
+            android.util.Log.d("SpotifyProxy", "Already initialized");
+            initSemaphore.release();
         }
     }
 
     public void init(Context context) {
         android.util.Log.d("SpotifyProxy", "Initializing from context");
         try {
-            initInProgressSemaphore.acquire();
+            initSemaphore.acquire();
         } catch(InterruptedException e) {
             throw new RuntimeException(e);
         }
         if (initDoneLatch.getCount() > 0) {
+            android.util.Log.d("SpotifyProxy", "Starting init flow");
             SharedPreferences prefs = context.getSharedPreferences(AUTH_TOKEN_PREFS, 0);
-            init(prefs.getString(AUTH_TOKEN_KEY, ""), prefs.getString(USER_ID_KEY, ""));
+            init(context, prefs.getString(AUTH_TOKEN_KEY, ""), prefs.getString(USER_ID_KEY, ""));
         } else {
-            initInProgressSemaphore.release();
+            android.util.Log.d("SpotifyProxy", "Already initialized");
+            initSemaphore.release();
         }
     }
 
@@ -175,12 +179,11 @@ public class SpotifyProxy
                                 putString(AUTH_TOKEN_KEY, authResponse.getAccessToken()).
                                 putString(USER_ID_KEY, user.id).
                                 apply();
-                        init(authResponse.getAccessToken(), user.id);
+                        init(activity, authResponse.getAccessToken(), user.id);
                     }
 
                     public void failure(RetrofitError error) {
-                        initDoneLatch.countDown();
-                        initInProgressSemaphore.release();
+                        initSemaphore.release();
                         android.util.Log.d("Clockify", "Failure fetching me: " + error);
                     }
                 });
@@ -188,7 +191,7 @@ public class SpotifyProxy
         }
     }
 
-    private void init(String accessToken, String userId) {
+    private void init(Context context, String accessToken, String userId) {
         android.util.Log.d("SpotifyProxy", "Init with access token " + accessToken + " and userId " + userId);
 
         if (spotify == null) {
@@ -199,22 +202,24 @@ public class SpotifyProxy
 
         this.userId = userId;
 
-        Config playerConfig = new Config(SpotifyProxy.this.activity, accessToken, CLIENT_ID);
+        Config playerConfig = new Config(context, accessToken, CLIENT_ID);
         mPlayer = Spotify.getPlayer(playerConfig, this, new Player.InitializationObserver() {
             @Override
             public void onInitialized(Player player) {
                 mPlayer.addConnectionStateCallback(SpotifyProxy.this);
                 mPlayer.addPlayerNotificationCallback(SpotifyProxy.this);
-                initDoneLatch.countDown();
-                initInProgressSemaphore.release();
             }
 
             @Override
             public void onError(Throwable throwable) {
-                initDoneLatch.countDown();
+                initSemaphore.release();
                 android.util.Log.e("SpotifyProxy", "Could not initialize player: " + throwable.getMessage());
             }
         });
+
+        activity = null;
+        initDoneLatch.countDown();
+        initSemaphore.release();
     }
 
     @Override
