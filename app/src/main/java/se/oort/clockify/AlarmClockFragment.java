@@ -66,6 +66,11 @@ import android.widget.ToggleButton;
 
 import com.android.datetimepicker.time.RadialPickerLayout;
 import com.android.datetimepicker.time.TimePickerDialog;
+
+import kaaes.spotify.webapi.android.models.Playlist;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 import se.oort.clockify.alarms.AlarmStateManager;
 import se.oort.clockify.provider.Alarm;
 import se.oort.clockify.provider.AlarmInstance;
@@ -74,9 +79,12 @@ import se.oort.clockify.widget.ActionableToastBar;
 import se.oort.clockify.widget.TextTime;
 
 import java.text.DateFormatSymbols;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * AlarmClock application.
@@ -143,6 +151,8 @@ public class AlarmClockFragment extends DeskClockFragment implements
 
     // Cached layout positions of items in listview prior to add/removal of alarm item
     private ConcurrentHashMap<Long, Integer> mItemIdTopMap = new ConcurrentHashMap<Long, Integer>();
+
+    private SpotifyProxy spotify = SpotifyProxy.getInstance();
 
     public AlarmClockFragment() {
         // Basic provider required by Fragment.java
@@ -545,11 +555,7 @@ public class AlarmClockFragment extends DeskClockFragment implements
         if (mSelectedAlarm == null) {
             // If mSelectedAlarm is null then we're creating a new alarm.
             Alarm a = new Alarm();
-            a.alert = RingtoneManager.getActualDefaultRingtoneUri(getActivity(),
-                    RingtoneManager.TYPE_ALARM);
-            if (a.alert == null) {
-                a.alert = Uri.parse("content://settings/system/alarm_alert");
-            }
+            a.alert = Alarm.NO_RINGTONE_URI;
             a.hour = hourOfDay;
             a.minutes = minute;
             a.enabled = true;
@@ -646,11 +652,6 @@ public class AlarmClockFragment extends DeskClockFragment implements
         }
         mSelectedAlarm.alert = uri;
 
-        // Save the last selected ringtone as the default for new alarms
-        if (!Alarm.NO_RINGTONE_URI.equals(uri)) {
-            RingtoneManager.setActualDefaultRingtoneUri(
-                    getActivity(), RingtoneManager.TYPE_ALARM, uri);
-        }
         asyncUpdateAlarm(mSelectedAlarm, false);
     }
 
@@ -1367,26 +1368,30 @@ public class AlarmClockFragment extends DeskClockFragment implements
         }
 
 
-        /**
-         * Does a read-through cache for ringtone titles.
-         *
-         * @param uri The uri of the ringtone.
-         * @return The ringtone title. {@literal null} if no matching ringtone found.
-         */
         private String getRingToneTitle(Uri uri) {
-            // Try the cache first
-            String title = mRingtoneTitleCache.getString(uri.toString());
-            if (title == null) {
-                // This is slow because a media player is created during Ringtone object creation.
-                Ringtone ringTone = RingtoneManager.getRingtone(mContext, uri);
-                if (ringTone != null) {
-                    title = ringTone.getTitle(mContext);
-                    if (title != null) {
-                        mRingtoneTitleCache.putString(uri.toString(), title);
-                    }
+            final CountDownLatch latch = new CountDownLatch(1);
+            final List<String> name = new ArrayList<String>();
+
+            spotify.getPlaylist(uri.toString(), new Callback<Playlist>() {
+                @Override
+                public void success(Playlist playlist, Response response) {
+                    name.add(playlist.name);
+                    latch.countDown();
                 }
+                @Override
+                public void failure(RetrofitError error) {
+                    android.util.Log.d("Clockify", "Unable to fetch playlist: " + error);
+                    name.add("-");
+                    latch.countDown();
+                }
+            });
+
+            try {
+                latch.await();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
-            return title;
+            return name.get(0);
         }
 
         public void setNewAlarm(long alarmId) {

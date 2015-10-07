@@ -22,6 +22,7 @@ import java.util.concurrent.CountDownLatch;
 import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyService;
 import kaaes.spotify.webapi.android.models.Pager;
+import kaaes.spotify.webapi.android.models.Playlist;
 import kaaes.spotify.webapi.android.models.PlaylistSimple;
 import kaaes.spotify.webapi.android.models.UserPrivate;
 import retrofit.Callback;
@@ -97,6 +98,11 @@ public class SpotifyProxy
                 cb.failure(error);
             }
         });
+    }
+
+    public void getPlaylist(String uri, Callback<Playlist> cb) {
+        awaitInitDone();
+        spotify.getPlaylist(me.id, uri, cb);
     }
 
     public void getPlaylists(Callback<List<PlaylistSimple>> cb) {

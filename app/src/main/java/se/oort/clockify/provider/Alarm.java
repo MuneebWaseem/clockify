@@ -239,7 +239,7 @@ public final class Alarm implements Parcelable, ClockContract.AlarmsColumns {
         this.vibrate = true;
         this.daysOfWeek = new DaysOfWeek(0);
         this.label = "";
-        this.alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        this.alert = Alarm.NO_RINGTONE_URI;
         this.deleteAfterUse = false;
     }
 
@@ -254,9 +254,7 @@ public final class Alarm implements Parcelable, ClockContract.AlarmsColumns {
         deleteAfterUse = c.getInt(DELETE_AFTER_USE_INDEX) == 1;
 
         if (c.isNull(RINGTONE_INDEX)) {
-            // Should we be saving this with the current ringtone or leave it null
-            // so it changes when user changes default ringtone?
-            alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+            alert = Alarm.NO_RINGTONE_URI;
         } else {
             alert = Uri.parse(c.getString(RINGTONE_INDEX));
         }
