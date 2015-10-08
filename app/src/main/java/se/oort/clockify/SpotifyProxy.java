@@ -79,7 +79,7 @@ public class SpotifyProxy
             AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
                     AuthenticationResponse.Type.TOKEN,
                     REDIRECT_URI);
-            builder.setScopes(new String[]{"user-read-private", "streaming"});
+            builder.setScopes(new String[]{"user-read-private", "streaming", "playlist-read-private"});
             AuthenticationRequest request = builder.build();
 
             AuthenticationClient.openLoginActivity(activity, REQUEST_CODE, request);
@@ -122,6 +122,10 @@ public class SpotifyProxy
         options.put("limit", maxPlaylistLimit);
         spotify.getPlaylists(userId, options, new Callback<Pager<PlaylistSimple>>() {
             public void success(Pager<PlaylistSimple> pager, Response response) {
+                android.util.Log.d("SpotifyProxy", "Got playlists");
+                for (PlaylistSimple playlist : pager.items) {
+                    android.util.Log.d("SpotifyProxy", playlist.name);
+                }
                 if (pager.next != null) {
                     getPlaylists(cb, offset + maxPlaylistLimit);
                 }

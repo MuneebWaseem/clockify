@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -128,6 +129,7 @@ public class AlarmActivity extends Activity {
             }
         }
     };
+    private AudioManager audioManager;
 
     private void snooze() {
         AlarmStateManager.setSnoozeState(this, mInstance);
@@ -182,6 +184,7 @@ public class AlarmActivity extends Activity {
         filter.addAction(ALARM_SNOOZE_ACTION);
         filter.addAction(ALARM_DISMISS_ACTION);
         registerReceiver(mReceiver, filter);
+        audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
     }
 
 
@@ -248,7 +251,13 @@ public class AlarmActivity extends Activity {
             // Volume keys and camera keys dismiss the alarm
             case KeyEvent.KEYCODE_POWER:
             case KeyEvent.KEYCODE_VOLUME_UP:
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) + 1, AudioManager.FLAG_SHOW_UI);
+                Log.v("AlarmAlertFullScreen, set volume to " + audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+                break;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) - 1, AudioManager.FLAG_SHOW_UI);
+                Log.v("AlarmAlertFullScreen, set volume to " + audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+                break;
             case KeyEvent.KEYCODE_VOLUME_MUTE:
             case KeyEvent.KEYCODE_CAMERA:
             case KeyEvent.KEYCODE_FOCUS:

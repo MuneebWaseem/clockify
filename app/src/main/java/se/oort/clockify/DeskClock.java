@@ -27,6 +27,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -182,6 +183,7 @@ public class DeskClock extends Activity implements LabelDialogFragment.TimerLabe
         // user might have clear our data.
         AlarmStateManager.updateNextAlarm(this);
 
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         spotify.init(this);
     }
 
