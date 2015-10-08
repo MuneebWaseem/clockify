@@ -65,7 +65,7 @@ public class SpotifyProxy
     // Can be any integer
     private static final int REQUEST_CODE = 1337;
 
-    public void init(Activity activity) {
+    private void initWithActivity(Activity activity) {
         android.util.Log.d("SpotifyProxy", "Initializing from activity");
         try {
             initSemaphore.acquire();
@@ -90,19 +90,23 @@ public class SpotifyProxy
     }
 
     public void init(Context context) {
-        android.util.Log.d("SpotifyProxy", "Initializing from context");
-        try {
-            initSemaphore.acquire();
-        } catch(InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        if (initDoneLatch.getCount() > 0) {
-            android.util.Log.d("SpotifyProxy", "Starting init flow");
-            SharedPreferences prefs = context.getSharedPreferences(AUTH_TOKEN_PREFS, 0);
-            init(context, prefs.getString(AUTH_TOKEN_KEY, ""), prefs.getString(USER_ID_KEY, ""));
+        if (context instanceof Activity) {
+            initWithActivity((Activity) context);
         } else {
-            android.util.Log.d("SpotifyProxy", "Already initialized");
-            initSemaphore.release();
+            android.util.Log.d("SpotifyProxy", "Initializing from context");
+            try {
+                initSemaphore.acquire();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            if (initDoneLatch.getCount() > 0) {
+                android.util.Log.d("SpotifyProxy", "Starting init flow");
+                SharedPreferences prefs = context.getSharedPreferences(AUTH_TOKEN_PREFS, 0);
+                init(context, prefs.getString(AUTH_TOKEN_KEY, ""), prefs.getString(USER_ID_KEY, ""));
+            } else {
+                android.util.Log.d("SpotifyProxy", "Already initialized");
+                initSemaphore.release();
+            }
         }
     }
 
@@ -138,26 +142,25 @@ public class SpotifyProxy
         });
     }
 
-    public void getPlaylist(Uri uri, Callback<Playlist> cb) {
+    public void getPlaylists(Context context, Callback<List<PlaylistSimple>> cb) {
+        android.util.Log.d("SpotifyProxy", "Asked to fetch playlists");
+        init(context);
         awaitInitDone();
-        String[] parts = uri.toString().split(":");
-        spotify.getPlaylist(userId, parts[parts.length-1], cb);
-    }
-
-    public void getPlaylists(Callback<List<PlaylistSimple>> cb) {
-        awaitInitDone();
+        android.util.Log.d("SpotifyProxy", "Fetching");
         getPlaylists(cb, 0);
     }
 
-    public void play(String uri) {
+    public void play(Context context, String uri) {
         android.util.Log.d("SpotifyProxy", "Asked to play " + uri);
+        init(context);
         awaitInitDone();
-        android.util.Log.d("SpotifyProxy", "Starting");
+        android.util.Log.d("SpotifyProxy", "Playing");
         mPlayer.play(uri);
     }
 
-    public void pause() {
+    public void pause(Context context) {
         android.util.Log.d("SpotifyProxy", "Asked to pause");
+        init(context);
         awaitInitDone();
         android.util.Log.d("SpotifyProxy", "Pausing");
         mPlayer.pause();

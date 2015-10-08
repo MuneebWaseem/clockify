@@ -46,7 +46,7 @@ public class PlaylistPicker extends ListActivity {
         spotify.init(this);
         listAdapter = new ArrayAdapter<PlaylistWrapper>(this, android.R.layout.simple_list_item_1, new ArrayList<PlaylistWrapper>());
         setListAdapter(listAdapter);
-        spotify.getPlaylists(new Callback<List<PlaylistSimple>>() {
+        spotify.getPlaylists(this, new Callback<List<PlaylistSimple>>() {
             public void success(List<PlaylistSimple> list, Response response) {
                 listAdapter.addAll(PlaylistWrapper.convert(list));
                 listAdapter.notifyDataSetChanged();

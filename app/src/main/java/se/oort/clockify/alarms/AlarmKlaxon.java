@@ -61,7 +61,7 @@ public class AlarmKlaxon {
 
         if (sStarted) {
             sStarted = false;
-            spotify.pause();
+            spotify.pause(context);
             // Stop audio playing
             if (sMediaPlayer != null) {
                 sMediaPlayer.stop();
@@ -158,7 +158,7 @@ public class AlarmKlaxon {
     private static void startAlarm(Context context, MediaPlayer player, boolean spotifyPlaying, Uri uri) throws IOException {
         if (spotifyPlaying) {
             String[] parts = uri.toString().split("/");
-            spotify.play(parts[0]);
+            spotify.play(context, parts[0]);
         } else {
             AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
             // do not play alarms if stream volume is 0 (typically because ringer mode is silent).
