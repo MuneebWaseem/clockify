@@ -10,11 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2982720-a7cf-49a4-825a-ec244e70f4e0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmKlaxon.java" afterPath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmKlaxon.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/DeskClock.java" afterPath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/DeskClock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/widget/multiwaveview/GlowPadView.java" afterPath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/widget/multiwaveview/GlowPadView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SpotifyProxy.java" afterPath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SpotifyProxy.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="clockify.iws" />
@@ -73,17 +70,17 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+              <caret line="22" column="74" selection-start-line="22" selection-start-column="74" selection-end-line="22" selection-end-column="74" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AlarmActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AlarmActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53636366">
-              <caret line="260" column="0" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
+            <state vertical-scroll-proportion="-7.111111">
+              <caret line="261" column="41" selection-start-line="261" selection-start-column="41" selection-end-line="261" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -91,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AlarmKlaxon.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AlarmKlaxon.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmKlaxon.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="59" selection-start-line="45" selection-start-column="59" selection-end-line="45" selection-end-column="59" />
+            <state vertical-scroll-proportion="-0.73109245">
+              <caret line="92" column="66" selection-start-line="92" selection-start-column="66" selection-end-line="92" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -118,7 +115,28 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="261" column="0" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="e#0#47691#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#5864#5865#0" expanded="false" />
+                <element signature="e#5908#5909#0" expanded="false" />
+                <element signature="e#6623#6624#0" expanded="false" />
+                <element signature="e#6659#6660#0" expanded="false" />
+                <element signature="e#7611#7612#0" expanded="false" />
+                <element signature="e#7646#7647#0" expanded="false" />
+                <element signature="e#23372#23373#0" expanded="false" />
+                <element signature="e#23412#23413#0" expanded="false" />
+                <element signature="e#23967#23968#0" expanded="false" />
+                <element signature="e#24019#24020#0" expanded="false" />
+                <element signature="e#24591#24592#0" expanded="false" />
+                <element signature="e#24646#24647#0" expanded="false" />
+                <element signature="e#40818#40819#0" expanded="false" />
+                <element signature="e#40863#40864#0" expanded="false" />
+                <element signature="e#40900#40901#0" expanded="false" />
+                <element signature="e#40928#40929#0" expanded="false" />
+                <element signature="e#40975#40976#0" expanded="false" />
+                <element signature="e#41011#41012#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -2721,14 +2739,14 @@
         <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/provider/Alarm.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/AlarmClockFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/PlaylistPicker.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmKlaxon.java" />
         <option value="$PROJECT_DIR$/app/build/intermediates/exploded-aar/clockify/datetimepicker/unspecified/res/values/values.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SpotifyProxy.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/widget/multiwaveview/GlowPadView.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/DeskClock.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmKlaxon.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -3085,7 +3103,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3712021" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.49141347" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.49141347" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2274678" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -3462,7 +3480,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="261" column="0" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#47691#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#5864#5865#0" expanded="false" />
+            <element signature="e#5908#5909#0" expanded="false" />
+            <element signature="e#6623#6624#0" expanded="false" />
+            <element signature="e#6659#6660#0" expanded="false" />
+            <element signature="e#7611#7612#0" expanded="false" />
+            <element signature="e#7646#7647#0" expanded="false" />
+            <element signature="e#23372#23373#0" expanded="false" />
+            <element signature="e#23412#23413#0" expanded="false" />
+            <element signature="e#23967#23968#0" expanded="false" />
+            <element signature="e#24019#24020#0" expanded="false" />
+            <element signature="e#24591#24592#0" expanded="false" />
+            <element signature="e#24646#24647#0" expanded="false" />
+            <element signature="e#40818#40819#0" expanded="false" />
+            <element signature="e#40863#40864#0" expanded="false" />
+            <element signature="e#40900#40901#0" expanded="false" />
+            <element signature="e#40928#40929#0" expanded="false" />
+            <element signature="e#40975#40976#0" expanded="false" />
+            <element signature="e#41011#41012#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3478,14 +3517,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -3508,11 +3539,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmKlaxon.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="59" selection-start-line="45" selection-start-column="59" selection-end-line="45" selection-end-column="59" />
-          <folding />
+        <state vertical-scroll-proportion="-7.111111">
+          <caret line="261" column="41" selection-start-line="261" selection-start-column="41" selection-end-line="261" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3527,13 +3560,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53636366">
-          <caret line="260" column="0" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="74" selection-start-line="22" selection-start-column="74" selection-end-line="22" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/alarms/AlarmKlaxon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.73109245">
+          <caret line="92" column="66" selection-start-line="92" selection-start-column="66" selection-end-line="92" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -22,6 +22,8 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnErrorListener;
 import android.media.RingtoneManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Vibrator;
 
@@ -44,6 +46,13 @@ public class AlarmKlaxon {
     private static boolean sStarted = false;
     private static MediaPlayer sMediaPlayer = null;
     private static SpotifyProxy spotify = SpotifyProxy.getInstance();
+
+    private static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 
     public static void stop(Context context) {
         Log.v("AlarmKlaxon.stop()");
@@ -81,7 +90,7 @@ public class AlarmKlaxon {
             boolean spotifyPlaying = false;
             // Fall back on the default alarm if the database does not have an
             // alarm stored.<
-            if (alarmNoise == null) {
+            if (alarmNoise == null || !isNetworkAvailable(context)) {
                 alarmNoise = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
                 if (Log.LOGV) {
                     Log.v("Using default alarm: " + alarmNoise.toString());
