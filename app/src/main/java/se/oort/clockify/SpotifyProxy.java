@@ -65,7 +65,7 @@ public class SpotifyProxy
     // Can be any integer
     private static final int REQUEST_CODE = 1337;
 
-    private void initWithActivity(Activity activity) {
+    public void init(Activity activity) {
         android.util.Log.d("SpotifyProxy", "Initializing from activity");
         try {
             initSemaphore.acquire();
@@ -89,24 +89,20 @@ public class SpotifyProxy
         }
     }
 
-    public void init(Context context) {
-        if (context instanceof Activity) {
-            initWithActivity((Activity) context);
+    private void init(Context context) {
+        android.util.Log.d("SpotifyProxy", "Initializing from context");
+        try {
+            initSemaphore.acquire();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if (initDoneLatch.getCount() > 0) {
+            android.util.Log.d("SpotifyProxy", "Starting init flow");
+            SharedPreferences prefs = context.getSharedPreferences(AUTH_TOKEN_PREFS, 0);
+            init(context, prefs.getString(AUTH_TOKEN_KEY, ""), prefs.getString(USER_ID_KEY, ""));
         } else {
-            android.util.Log.d("SpotifyProxy", "Initializing from context");
-            try {
-                initSemaphore.acquire();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            if (initDoneLatch.getCount() > 0) {
-                android.util.Log.d("SpotifyProxy", "Starting init flow");
-                SharedPreferences prefs = context.getSharedPreferences(AUTH_TOKEN_PREFS, 0);
-                init(context, prefs.getString(AUTH_TOKEN_KEY, ""), prefs.getString(USER_ID_KEY, ""));
-            } else {
-                android.util.Log.d("SpotifyProxy", "Already initialized");
-                initSemaphore.release();
-            }
+            android.util.Log.d("SpotifyProxy", "Already initialized");
+            initSemaphore.release();
         }
     }
 

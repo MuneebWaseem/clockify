@@ -43,7 +43,6 @@ public class PlaylistPicker extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        spotify.init(this);
         listAdapter = new ArrayAdapter<PlaylistWrapper>(this, android.R.layout.simple_list_item_1, new ArrayList<PlaylistWrapper>());
         setListAdapter(listAdapter);
         spotify.getPlaylists(this, new Callback<List<PlaylistSimple>>() {

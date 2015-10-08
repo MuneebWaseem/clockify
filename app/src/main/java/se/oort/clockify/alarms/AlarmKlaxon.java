@@ -57,8 +57,6 @@ public class AlarmKlaxon {
     public static void stop(Context context) {
         Log.v("AlarmKlaxon.stop()");
 
-        spotify.init(context);
-
         if (sStarted) {
             sStarted = false;
             spotify.pause(context);
@@ -79,8 +77,6 @@ public class AlarmKlaxon {
     public static void start(final Context context, AlarmInstance instance,
             boolean inTelephoneCall) {
         Log.v("AlarmKlaxon.start()");
-
-        spotify.init(context);
 
         // Make sure we are stop before starting
         stop(context);
