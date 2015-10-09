@@ -211,6 +211,7 @@ public class SpotifyProxy
             public void onInitialized(Player player) {
                 mPlayer.addConnectionStateCallback(SpotifyProxy.this);
                 mPlayer.addPlayerNotificationCallback(SpotifyProxy.this);
+                mPlayer.setRepeat(true);
             }
 
             @Override
