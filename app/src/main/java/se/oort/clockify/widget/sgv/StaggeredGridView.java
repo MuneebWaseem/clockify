@@ -58,6 +58,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import se.oort.clockify.SpotifyProxy;
+
 /**
  * Temporarily copied from support v4 library so that StaggeredGridView can access
  * animation APIs on the current SDK version.
@@ -75,8 +77,6 @@ import java.util.Map;
  * item views from xml.</p>
  */
 public class StaggeredGridView extends ViewGroup {
-
-    private static final String TAG = "Clock-" + StaggeredGridView.class.getSimpleName();
 
     /*
      * There are a few things you should know if you're going to make modifications
@@ -109,6 +109,8 @@ public class StaggeredGridView extends ViewGroup {
     private GridAdapter mAdapter;
 
     public static final int COLUMN_COUNT_AUTO = -1;
+
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/StaggeredGridView";
 
     /**
      * The window size to search for a specific item when restoring scroll position.
@@ -674,7 +676,7 @@ public class StaggeredGridView extends ViewGroup {
             try {
                 bitmap = cache.copy(Bitmap.Config.ARGB_8888, false);
             } catch (final OutOfMemoryError e) {
-                Log.w(TAG, "Failed to copy bitmap from Drawing cache", e);
+                Log.w(LOG_TAG, "Failed to copy bitmap from Drawing cache", e);
                 bitmap = null;
             }
         }
@@ -918,7 +920,7 @@ public class StaggeredGridView extends ViewGroup {
             case MotionEvent.ACTION_MOVE: {
                 final int index = MotionEventCompat.findPointerIndex(ev, mActivePointerId);
                 if (index < 0) {
-                    Log.e(TAG, "onInterceptTouchEvent could not find pointer with id " +
+                    Log.e(LOG_TAG, "onInterceptTouchEvent could not find pointer with id " +
                             mActivePointerId + " - did StaggeredGridView receive an inconsistent " +
                             "event stream?");
                     return false;
@@ -955,7 +957,7 @@ public class StaggeredGridView extends ViewGroup {
             case MotionEvent.ACTION_MOVE: {
                 final int index = MotionEventCompat.findPointerIndex(ev, mActivePointerId);
                 if (index < 0) {
-                    Log.e(TAG, "onInterceptTouchEvent could not find pointer with id " +
+                    Log.e(LOG_TAG, "onInterceptTouchEvent could not find pointer with id " +
                             mActivePointerId + " - did StaggeredGridView receive an inconsistent " +
                             "event stream?");
                     return false;
@@ -1530,12 +1532,12 @@ public class StaggeredGridView extends ViewGroup {
         final int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
         if (widthMode != MeasureSpec.EXACTLY) {
-            Log.d(TAG, "onMeasure: must have an exact width or match_parent! " +
+            Log.d(LOG_TAG, "onMeasure: must have an exact width or match_parent! " +
                     "Using fallback spec of EXACTLY " + widthSize);
             widthMode = MeasureSpec.EXACTLY;
         }
         if (heightMode != MeasureSpec.EXACTLY) {
-            Log.d(TAG, "onMeasure: must have an exact height or match_parent! " +
+            Log.d(LOG_TAG, "onMeasure: must have an exact height or match_parent! " +
                     "Using fallback spec of EXACTLY " + heightSize);
             heightMode = MeasureSpec.EXACTLY;
         }
@@ -1737,7 +1739,7 @@ public class StaggeredGridView extends ViewGroup {
                 }
             });
 
-            Log.v(TAG, "starting");
+            Log.v(LOG_TAG, "starting");
             animatorSet.start();
         } else {
             resetAnimationMode();
@@ -2178,10 +2180,10 @@ public class StaggeredGridView extends ViewGroup {
                 final int col = mIsRtlLayout ? nextColumn - spanIndex : nextColumn + spanIndex;
                 mItemBottoms[col] = lowest + rec.height;
 
-                if (Log.isLoggable(TAG, Log.VERBOSE)) {
-                    Log.v(TAG, " position: " + i + " bottoms: ");
+                if (Log.isLoggable(LOG_TAG, Log.VERBOSE)) {
+                    Log.v(LOG_TAG, " position: " + i + " bottoms: ");
                     for (int j = 0; j < mColCount; j++) {
-                        Log.v(TAG, "    mItemBottoms["+j+"]: " + mItemBottoms[j]);
+                        Log.v(LOG_TAG, "    mItemBottoms["+j+"]: " + mItemBottoms[j]);
                     }
                 }
             }
@@ -2398,13 +2400,6 @@ public class StaggeredGridView extends ViewGroup {
                 childRight = childLeft + child.getMeasuredWidth();
             }
 
-        /*    Log.v(TAG, "[layoutChildren] height: " + childHeight
-                    + " top: " + childTop + " bottom: " + childBottom
-                    + " left: " + childLeft
-                    + " column: " + col
-                    + " position: " + position
-                    + " id: " + lp.id);
-*/
             child.layout(childLeft, childTop, childRight, childBottom);
             if (lp.id == mFocusedChildIdToScrollIntoView) {
                 child.requestFocus();
@@ -2624,7 +2619,7 @@ public class StaggeredGridView extends ViewGroup {
             }
             child.layout(childLeft, childTop, childRight, childBottom);
 
-            Log.v(TAG, "[fillUp] position: " + position + " id: " + lp.id
+            Log.v(LOG_TAG, "[fillUp] position: " + position + " id: " + lp.id
                     + " childLeft: " + childLeft + " childTop: " + childTop
                     + " column: " + rec.column + " childHeight:" + childHeight);
 
@@ -2768,7 +2763,7 @@ public class StaggeredGridView extends ViewGroup {
                 childRight = childLeft + child.getMeasuredWidth();
             }
 
-            Log.v(TAG, "[fillDown] position: " + position + " id: " + lp.id
+            Log.v(LOG_TAG, "[fillDown] position: " + position + " id: " + lp.id
                     + " childLeft: " + childLeft + " childTop: " + childTop
                     + " column: " + rec.column + " childHeight:" + childHeight);
 
@@ -3261,7 +3256,7 @@ public class StaggeredGridView extends ViewGroup {
             return;
         }
 
-        Log.v(TAG, "[restoreScrollPosition] " + scrollState);
+        Log.v(LOG_TAG, "[restoreScrollPosition] " + scrollState);
 
         int targetPosition = 0;
         long itemId = -1;
@@ -3706,7 +3701,7 @@ public class StaggeredGridView extends ViewGroup {
             super(MATCH_PARENT, height);
 
             if (this.height == MATCH_PARENT) {
-                Log.w(TAG, "Constructing LayoutParams with height FILL_PARENT - " +
+                Log.w(LOG_TAG, "Constructing LayoutParams with height FILL_PARENT - " +
                         "impossible! Falling back to WRAP_CONTENT");
                 this.height = WRAP_CONTENT;
             }
@@ -3716,12 +3711,12 @@ public class StaggeredGridView extends ViewGroup {
             super(c, attrs);
 
             if (this.width != MATCH_PARENT) {
-                Log.w(TAG, "Inflation setting LayoutParams width to " + this.width +
+                Log.w(LOG_TAG, "Inflation setting LayoutParams width to " + this.width +
                         " - must be MATCH_PARENT");
                 this.width = MATCH_PARENT;
             }
             if (this.height == MATCH_PARENT) {
-                Log.w(TAG, "Inflation setting LayoutParams height to MATCH_PARENT - " +
+                Log.w(LOG_TAG, "Inflation setting LayoutParams height to MATCH_PARENT - " +
                         "impossible! Falling back to WRAP_CONTENT");
                 this.height = WRAP_CONTENT;
             }
@@ -3735,12 +3730,12 @@ public class StaggeredGridView extends ViewGroup {
             super(other);
 
             if (this.width != MATCH_PARENT) {
-                Log.w(TAG, "Constructing LayoutParams with width " + this.width +
+                Log.w(LOG_TAG, "Constructing LayoutParams with width " + this.width +
                         " - must be MATCH_PARENT");
                 this.width = MATCH_PARENT;
             }
             if (this.height == MATCH_PARENT) {
-                Log.w(TAG, "Constructing LayoutParams with height MATCH_PARENT - " +
+                Log.w(LOG_TAG, "Constructing LayoutParams with height MATCH_PARENT - " +
                         "impossible! Falling back to WRAP_CONTENT");
                 this.height = WRAP_CONTENT;
             }

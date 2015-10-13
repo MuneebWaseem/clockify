@@ -20,6 +20,7 @@ import retrofit.client.Response;
 
 public class PlaylistPicker extends ListActivity {
 
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/PlaylistPicker";
     private SpotifyProxy spotify = SpotifyProxy.getInstance();
     private ArrayAdapter<PlaylistWrapper> listAdapter;
 
@@ -51,7 +52,7 @@ public class PlaylistPicker extends ListActivity {
                 listAdapter.notifyDataSetChanged();
             }
             public void failure(RetrofitError error) {
-                android.util.Log.d("Clockify", "Failure fetching playlists: " + error);
+                android.util.Log.d(LOG_TAG, "Failure fetching playlists: " + error);
             }
 
         });

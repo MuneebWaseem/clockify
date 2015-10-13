@@ -45,6 +45,7 @@ import android.text.format.Time;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -64,6 +65,7 @@ import java.util.TimeZone;
 
 
 public class Utils {
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/Utils";
     private final static String PARAM_LANGUAGE_CODE = "hl";
 
     /**
@@ -136,7 +138,7 @@ public class Utils {
             } catch (NameNotFoundException e) {
                 // Cannot find the package name, so don't add in the version parameter
                 // This shouldn't happen.
-                Log.wtf("Invalid package name for context " + e);
+                Log.w(LOG_TAG, "Invalid package name for context " + e);
             }
         } else {
             builder.appendQueryParameter(PARAM_VERSION, sCachedVersionCode);
@@ -355,7 +357,7 @@ public class Utils {
         long alarmOnQuarterHour = nextQuarter.getTimeInMillis();
         if (0 >= (alarmOnQuarterHour - System.currentTimeMillis())
                 || (alarmOnQuarterHour - System.currentTimeMillis()) > 901000) {
-            Log.wtf("quarterly alarm calculation error");
+            Log.w(LOG_TAG, "quarterly alarm calculation error");
         }
         return alarmOnQuarterHour;
     }
@@ -538,7 +540,7 @@ public class Utils {
         int minLength = cities.length;
         if (cities.length != timezones.length || ids.length != cities.length) {
             minLength = Math.min(cities.length, Math.min(timezones.length, ids.length));
-            Log.e("City lists sizes are not the same, trancating");
+            Log.e(LOG_TAG, "City lists sizes are not the same, trancating");
         }
         CityObj[] tempList = new CityObj[minLength];
         for (int i = 0; i < cities.length; i++) {

@@ -42,6 +42,8 @@ public class ScreensaverActivity extends Activity {
     // android:key="screensaver_clock_style" in dream_settings.xml
     static final String DEFAULT_CLOCK_STYLE = "digital";
 
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/ScreensaverActivity";
+
     private View mContentView, mSaverView;
     private View mAnalogClock, mDigitalClock;
 
@@ -97,7 +99,7 @@ public class ScreensaverActivity extends Activity {
     };
 
     public ScreensaverActivity() {
-        if (DEBUG) Log.d(TAG, "Screensaver allocated");
+        if (DEBUG) Log.d(LOG_TAG, "Screensaver allocated");
         mMoveSaverRunnable = new ScreensaverMoveSaverRunnable(mHandler);
     }
 
@@ -154,7 +156,7 @@ public class ScreensaverActivity extends Activity {
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-        if (DEBUG) Log.d(TAG, "Screensaver configuration changed");
+        if (DEBUG) Log.d(LOG_TAG, "Screensaver configuration changed");
         super.onConfigurationChanged(newConfig);
         mHandler.removeCallbacks(mMoveSaverRunnable);
         layoutClockSaver();

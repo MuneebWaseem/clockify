@@ -25,16 +25,19 @@ import android.database.Cursor;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
-import se.oort.clockify.Log;
 import se.oort.clockify.R;
 import se.oort.clockify.SettingsActivity;
+import se.oort.clockify.SpotifyProxy;
 
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
 public final class AlarmInstance implements ClockContract.InstancesColumns {
+
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/AlarmInstance";
     /**
      * Offset from alarm time to show low priority notification
      */
@@ -213,7 +216,7 @@ public final class AlarmInstance implements ClockContract.InstancesColumns {
         String dupSelector = ALARM_ID + " = " + instance.mAlarmId;
         for (AlarmInstance otherInstances : getInstances(contentResolver, dupSelector)) {
             if (otherInstances.getAlarmTime().equals(instance.getAlarmTime())) {
-                Log.i("Detected duplicate instance in DB. Updating " + otherInstances + " to "
+                Log.i(LOG_TAG, "Detected duplicate instance in DB. Updating " + otherInstances + " to "
                         + instance);
                 // Copy over the new instance values and update the db
                 instance.mId = otherInstances.mId;

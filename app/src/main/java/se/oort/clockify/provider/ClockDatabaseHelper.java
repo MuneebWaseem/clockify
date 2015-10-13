@@ -24,16 +24,18 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.text.TextUtils;
-
-import se.oort.clockify.Log;
+import android.util.Log;
 
 import java.util.Calendar;
+
+import se.oort.clockify.SpotifyProxy;
 
 /**
  * Helper class for opening the database from multiple providers.  Also provides
  * some common functionality.
  */
 class ClockDatabaseHelper extends SQLiteOpenHelper {
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/ClockDatabaseHelper";
     /**
      * Original Clock Database.
      **/
@@ -81,7 +83,7 @@ class ClockDatabaseHelper extends SQLiteOpenHelper {
                 ClockContract.AlarmsColumns.LABEL + " TEXT NOT NULL, " +
                 ClockContract.AlarmsColumns.RINGTONE + " TEXT, " +
                 ClockContract.AlarmsColumns.DELETE_AFTER_USE + " INTEGER NOT NULL DEFAULT 0);");
-        Log.i("Alarms Table created");
+        Log.i(LOG_TAG, "Alarms Table created");
     }
 
     private static void createInstanceTable(SQLiteDatabase db) {
@@ -100,7 +102,7 @@ class ClockDatabaseHelper extends SQLiteOpenHelper {
                     ALARMS_TABLE_NAME + "(" + ClockContract.AlarmsColumns._ID + ") " +
                     "ON UPDATE CASCADE ON DELETE CASCADE" +
                 ");");
-        Log.i("Instance table created");
+        Log.i(LOG_TAG, "Instance table created");
     }
 
     private static void createCitiesTable(SQLiteDatabase db) {
@@ -109,7 +111,7 @@ class ClockDatabaseHelper extends SQLiteOpenHelper {
                 ClockContract.CitiesColumns.CITY_NAME + " TEXT NOT NULL, " +
                 ClockContract.CitiesColumns.TIMEZONE_NAME + " TEXT NOT NULL, " +
                 ClockContract.CitiesColumns.TIMEZONE_OFFSET + " INTEGER NOT NULL);");
-        Log.i("Cities table created");
+        Log.i(LOG_TAG, "Cities table created");
     }
 
     private Context mContext;
@@ -126,7 +128,7 @@ class ClockDatabaseHelper extends SQLiteOpenHelper {
         createCitiesTable(db);
 
         // insert default alarms
-        Log.i("Inserting default alarms");
+        Log.i(LOG_TAG, "Inserting default alarms");
         String cs = ", "; //comma and space
         String insertMe = "INSERT INTO " + ALARMS_TABLE_NAME + " (" +
                 ClockContract.AlarmsColumns.HOUR + cs +
@@ -143,9 +145,7 @@ class ClockDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int currentVersion) {
-        if (Log.LOGV) {
-            Log.v("Upgrading alarms database from version " + oldVersion + " to " + currentVersion);
-        }
+        Log.v(LOG_TAG, "Upgrading alarms database from version " + oldVersion + " to " + currentVersion);
 
         if (oldVersion <= VERSION_6) {
             // These were not used in DB_VERSION_6, so we can just drop them.
@@ -157,7 +157,7 @@ class ClockDatabaseHelper extends SQLiteOpenHelper {
             createInstanceTable(db);
             createCitiesTable(db);
 
-            Log.i("Copying old alarms to new table");
+            Log.i(LOG_TAG, "Copying old alarms to new table");
             String[] OLD_TABLE_COLUMNS = {
                     "_id",
                     "hour",
@@ -198,7 +198,7 @@ class ClockDatabaseHelper extends SQLiteOpenHelper {
             }
             cursor.close();
 
-            Log.i("Dropping old alarm table");
+            Log.i(LOG_TAG, "Dropping old alarm table");
             db.execSQL("DROP TABLE IF EXISTS " + OLD_ALARMS_TABLE_NAME + ";");
         }
     }
@@ -234,7 +234,7 @@ class ClockDatabaseHelper extends SQLiteOpenHelper {
         if (rowId < 0) {
             throw new SQLException("Failed to insert row");
         }
-        if (Log.LOGV) Log.v("Added alarm rowId = " + rowId);
+        Log.v(LOG_TAG, "Added alarm rowId = " + rowId);
 
         return rowId;
     }

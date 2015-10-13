@@ -33,6 +33,7 @@ import se.oort.clockify.provider.DaysOfWeek;
 import se.oort.clockify.timer.TimerFragment;
 import se.oort.clockify.timer.TimerObj;
 import se.oort.clockify.timer.Timers;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -55,6 +56,8 @@ public class HandleApiCalls extends Activity {
 
     public static final long TIMER_MIN_LENGTH = 1000;
     public static final long TIMER_MAX_LENGTH = 24 * 60 * 60 * 1000;
+
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/HandleApiCalls";
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -167,7 +170,7 @@ public class HandleApiCalls extends Activity {
 
         final long length = 1000l * intent.getIntExtra(EXTRA_LENGTH, 0);
         if (length < TIMER_MIN_LENGTH || length > TIMER_MAX_LENGTH) {
-            Log.i("Invalid timer length requested: " + length);
+            Log.i(LOG_TAG, "Invalid timer length requested: " + length);
             return;
         }
         String label = getMessageFromIntent(intent);

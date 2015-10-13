@@ -30,6 +30,7 @@ import android.util.Log;
 
 import se.oort.clockify.DeskClock;
 import se.oort.clockify.R;
+import se.oort.clockify.SpotifyProxy;
 import se.oort.clockify.TimerRingService;
 import se.oort.clockify.Utils;
 
@@ -37,18 +38,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class TimerReceiver extends BroadcastReceiver {
-    private static final String TAG = "TimerReceiver";
 
     // Make this a large number to avoid the alarm ID's which seem to be 1, 2, ...
     // Must also be different than StopwatchService.NOTIFICATION_ID
     private static final int IN_USE_NOTIFICATION_ID = Integer.MAX_VALUE - 2;
+
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/TimerReceiver";
 
     ArrayList<TimerObj> mTimers;
 
     @Override
     public void onReceive(final Context context, final Intent intent) {
         if (Timers.LOGGING) {
-            Log.v(TAG, "Received intent " + intent.toString());
+            Log.v(LOG_TAG, "Received intent " + intent.toString());
         }
         String actionType = intent.getAction();
         // This action does not need the timers data
@@ -79,14 +81,14 @@ public class TimerReceiver extends BroadcastReceiver {
         // Remaining actions provide a timer Id
         if (!intent.hasExtra(Timers.TIMER_INTENT_EXTRA)) {
             // No data to work with, do nothing
-            Log.e(TAG, "got intent without Timer data");
+            Log.e(LOG_TAG, "got intent without Timer data");
             return;
         }
 
         // Get the timer out of the Intent
         int timerId = intent.getIntExtra(Timers.TIMER_INTENT_EXTRA, -1);
         if (timerId == -1) {
-            Log.d(TAG, "OnReceive:intent without Timer data for " + actionType);
+            Log.d(LOG_TAG, "OnReceive:intent without Timer data for " + actionType);
         }
 
         TimerObj t = Timers.findTimer(mTimers, timerId);
@@ -94,14 +96,14 @@ public class TimerReceiver extends BroadcastReceiver {
         if (Timers.TIMES_UP.equals(actionType)) {
             // Find the timer (if it doesn't exists, it was probably deleted).
             if (t == null) {
-                Log.d(TAG, " timer not found in list - do nothing");
+                Log.d(LOG_TAG, " timer not found in list - do nothing");
                 return;
             }
 
             t.mState = TimerObj.STATE_TIMESUP;
             t.writeToSharedPref(prefs);
             // Play ringtone by using TimerRingService service with a default alarm.
-            Log.d(TAG, "playing ringtone");
+            Log.d(LOG_TAG, "playing ringtone");
             Intent si = new Intent();
             si.setClass(context, TimerRingService.class);
             context.startService(si);
@@ -127,10 +129,10 @@ public class TimerReceiver extends BroadcastReceiver {
         } else if (Timers.NOTIF_TIMES_UP_STOP.equals(actionType)) {
             // Find the timer (if it doesn't exists, it was probably deleted).
             if (t == null) {
-                Log.d(TAG, "timer to stop not found in list - do nothing");
+                Log.d(LOG_TAG, "timer to stop not found in list - do nothing");
                 return;
             } else if (t.mState != TimerObj.STATE_TIMESUP) {
-                Log.d(TAG, "action to stop but timer not in times-up state - do nothing");
+                Log.d(LOG_TAG, "action to stop but timer not in times-up state - do nothing");
                 return;
             }
 
@@ -154,10 +156,10 @@ public class TimerReceiver extends BroadcastReceiver {
         } else if (Timers.NOTIF_TIMES_UP_PLUS_ONE.equals(actionType)) {
             // Find the timer (if it doesn't exists, it was probably deleted).
             if (t == null) {
-                Log.d(TAG, "timer to +1m not found in list - do nothing");
+                Log.d(LOG_TAG, "timer to +1m not found in list - do nothing");
                 return;
             } else if (t.mState != TimerObj.STATE_TIMESUP) {
-                Log.d(TAG, "action to +1m but timer not in times up state - do nothing");
+                Log.d(LOG_TAG, "action to +1m but timer not in times up state - do nothing");
                 return;
             }
 
@@ -194,7 +196,7 @@ public class TimerReceiver extends BroadcastReceiver {
     private void stopRingtoneIfNoTimesup(final Context context) {
         if (Timers.findExpiredTimer(mTimers) == null) {
             // Stop ringtone
-            Log.d(TAG, "stopping ringtone");
+            Log.d(LOG_TAG, "stopping ringtone");
             Intent si = new Intent();
             si.setClass(context, TimerRingService.class);
             context.stopService(si);
@@ -225,12 +227,12 @@ public class TimerReceiver extends BroadcastReceiver {
                 mngr.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, nextTimesup, p);
             }
             if (Timers.LOGGING) {
-                Log.d(TAG, "Setting times up to " + nextTimesup);
+                Log.d(LOG_TAG, "Setting times up to " + nextTimesup);
             }
         } else {
             mngr.cancel(p);
             if (Timers.LOGGING) {
-                Log.v(TAG, "no next times up");
+                Log.v(LOG_TAG, "no next times up");
             }
         }
     }
@@ -344,7 +346,7 @@ public class TimerReceiver extends BroadcastReceiver {
     private String buildTimeRemaining(Context context, long timeLeft) {
         if (timeLeft < 0) {
             // We should never be here...
-            Log.v(TAG, "Will not show notification for timer already expired.");
+            Log.v(LOG_TAG, "Will not show notification for timer already expired.");
             return null;
         }
 
@@ -457,7 +459,7 @@ public class TimerReceiver extends BroadcastReceiver {
         ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE)).notify(
                 timerObj.mTimerId, notification);
         if (Timers.LOGGING) {
-            Log.v(TAG, "Setting times-up notification for "
+            Log.v(LOG_TAG, "Setting times-up notification for "
                     + timerObj.getLabelOrDefault(context) + " #" + timerObj.mTimerId);
         }
     }
@@ -473,7 +475,7 @@ public class TimerReceiver extends BroadcastReceiver {
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancel(timerObj.mTimerId);
         if (Timers.LOGGING) {
-            Log.v(TAG, "Canceling times-up notification for "
+            Log.v(LOG_TAG, "Canceling times-up notification for "
                     + timerObj.getLabelOrDefault(context) + " #" + timerObj.mTimerId);
         }
     }

@@ -34,12 +34,13 @@ import se.oort.clockify.widget.TextClock;
 
 public class Screensaver extends DreamService {
     static final boolean DEBUG = false;
-    static final String TAG = "DeskClock/Screensaver";
 
     private View mContentView, mSaverView;
     private View mAnalogClock, mDigitalClock;
     private String mDateFormat;
     private String mDateFormatForAccessibility;
+
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/Screensaver";
 
     private final Handler mHandler = new Handler();
 
@@ -78,13 +79,13 @@ public class Screensaver extends DreamService {
     };
 
     public Screensaver() {
-        if (DEBUG) Log.d(TAG, "Screensaver allocated");
+        if (DEBUG) Log.d(LOG_TAG, "Screensaver allocated");
         mMoveSaverRunnable = new ScreensaverMoveSaverRunnable(mHandler);
     }
 
     @Override
     public void onCreate() {
-        if (DEBUG) Log.d(TAG, "Screensaver created");
+        if (DEBUG) Log.d(LOG_TAG, "Screensaver created");
         super.onCreate();
 
         mDateFormat = getString(R.string.abbrev_wday_month_day_no_year);
@@ -93,7 +94,7 @@ public class Screensaver extends DreamService {
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-        if (DEBUG) Log.d(TAG, "Screensaver configuration changed");
+        if (DEBUG) Log.d(LOG_TAG, "Screensaver configuration changed");
         super.onConfigurationChanged(newConfig);
         mHandler.removeCallbacks(mMoveSaverRunnable);
         layoutClockSaver();
@@ -102,7 +103,7 @@ public class Screensaver extends DreamService {
 
     @Override
     public void onAttachedToWindow() {
-        if (DEBUG) Log.d(TAG, "Screensaver attached to window");
+        if (DEBUG) Log.d(LOG_TAG, "Screensaver attached to window");
         super.onAttachedToWindow();
 
         // We want the screen saver to exit upon user interaction.
@@ -128,7 +129,7 @@ public class Screensaver extends DreamService {
 
     @Override
     public void onDetachedFromWindow() {
-        if (DEBUG) Log.d(TAG, "Screensaver detached from window");
+        if (DEBUG) Log.d(LOG_TAG, "Screensaver detached from window");
         super.onDetachedFromWindow();
 
         mHandler.removeCallbacks(mMoveSaverRunnable);

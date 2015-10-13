@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,9 +36,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import se.oort.clockify.Log;
 import se.oort.clockify.R;
 import se.oort.clockify.SettingsActivity;
+import se.oort.clockify.SpotifyProxy;
 import se.oort.clockify.Utils;
 import se.oort.clockify.provider.AlarmInstance;
 import se.oort.clockify.widget.TextClock;
@@ -47,6 +48,7 @@ import se.oort.clockify.widget.multiwaveview.GlowPadView;
  * Alarm activity that pops up a visible indicator when the alarm goes off.
  */
 public class AlarmActivity extends Activity {
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/AlarmActivity";
     // AlarmActivity listens for this broadcast intent, so that other applications
     // can snooze the alarm (after ALARM_ALERT_ACTION and before ALARM_DONE_ACTION).
     public static final String ALARM_SNOOZE_ACTION = "com.android.deskclock.ALARM_SNOOZE";
@@ -97,7 +99,7 @@ public class AlarmActivity extends Activity {
                     break;
                 default:
                     // Code should never reach here.
-                    Log.e("Trigger detected on unhandled resource. Skipping.");
+                    Log.e(LOG_TAG, "Trigger detected on unhandled resource. Skipping.");
             }
         }
 
@@ -125,7 +127,7 @@ public class AlarmActivity extends Activity {
             } else if (action.equals(AlarmService.ALARM_DONE_ACTION)) {
                 finish();
             } else {
-                Log.i("Unknown broadcast in AlarmActivity: " + action);
+                Log.i(LOG_TAG, "Unknown broadcast in AlarmActivity: " + action);
             }
         }
     };
@@ -146,10 +148,10 @@ public class AlarmActivity extends Activity {
         long instanceId = AlarmInstance.getId(getIntent().getData());
         mInstance = AlarmInstance.getInstance(this.getContentResolver(), instanceId);
         if (mInstance != null) {
-            Log.v("Displaying alarm for instance: " + mInstance);
+            Log.v(LOG_TAG, "Displaying alarm for instance: " + mInstance);
         } else {
             // The alarm got deleted before the activity got created, so just finish()
-            Log.v("Error displaying alarm for intent: " + getIntent());
+            Log.v(LOG_TAG, "Error displaying alarm for intent: " + getIntent());
             finish();
             return;
         }
@@ -246,17 +248,17 @@ public class AlarmActivity extends Activity {
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         // Do this on key down to handle a few of the system keys.
-        Log.v("AlarmAlertFullScreen - dispatchKeyEvent " + event.getKeyCode());
+        Log.v(LOG_TAG, "AlarmAlertFullScreen - dispatchKeyEvent " + event.getKeyCode());
         switch (event.getKeyCode()) {
             // Volume keys and camera keys dismiss the alarm
             case KeyEvent.KEYCODE_POWER:
             case KeyEvent.KEYCODE_VOLUME_UP:
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) + 1, AudioManager.FLAG_SHOW_UI);
-                Log.v("AlarmAlertFullScreen, set volume to " + audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+                Log.v(LOG_TAG, "AlarmAlertFullScreen, set volume to " + audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
                 break;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) - 1, AudioManager.FLAG_SHOW_UI);
-                Log.v("AlarmAlertFullScreen, set volume to " + audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+                Log.v(LOG_TAG, "AlarmAlertFullScreen, set volume to " + audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
                 break;
             case KeyEvent.KEYCODE_VOLUME_MUTE:
             case KeyEvent.KEYCODE_CAMERA:

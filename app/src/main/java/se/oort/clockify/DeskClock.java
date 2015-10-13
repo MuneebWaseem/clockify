@@ -64,11 +64,10 @@ public class DeskClock extends Activity implements LabelDialogFragment.TimerLabe
             LabelDialogFragment.AlarmLabelDialogHandler{
     private static final boolean DEBUG = false;
 
-    private static final String LOG_TAG = "DeskClock";
-
     // Alarm action for midnight (so we can update the date display).
     private static final String KEY_SELECTED_TAB = "selected_tab";
     private static final String KEY_CLOCK_STATE = "clock_state";
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/DeskClock";
 
     public static final String SELECT_TAB_INTENT_EXTRA = "deskclock.select.tab";
 
@@ -184,7 +183,6 @@ public class DeskClock extends Activity implements LabelDialogFragment.TimerLabe
         AlarmStateManager.updateNextAlarm(this);
 
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        spotify.init(this);
     }
 
     @Override
@@ -244,7 +242,6 @@ public class DeskClock extends Activity implements LabelDialogFragment.TimerLabe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        spotify.handleActivityResult(requestCode, resultCode, intent);
     }
 
     @Override

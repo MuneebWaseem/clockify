@@ -238,6 +238,11 @@
             android:name=".PlaylistPicker"
             android:label="@string/title_activity_playlist_picker" >
         </activity>
+        <activity
+            android:name=".SpotifyAuthenticator"
+            android:theme="@android:style/Theme.NoDisplay"
+            android:label="@string/title_activity_spotify_init" >
+        </activity>
     </application>
 
 </manifest>

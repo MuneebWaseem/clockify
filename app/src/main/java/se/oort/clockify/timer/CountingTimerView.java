@@ -23,13 +23,14 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.TextView;
 
-import se.oort.clockify.Log;
 import se.oort.clockify.R;
+import se.oort.clockify.SpotifyProxy;
 import se.oort.clockify.Utils;
 
 
@@ -40,6 +41,8 @@ import se.oort.clockify.Utils;
  * drawing digits (and optional label) of the time set in {@link #setTime(long, boolean, boolean)}
  */
 public class CountingTimerView extends View {
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/CountingTimerView";
+
     private static final String TWO_DIGITS = "%02d";
     private static final String ONE_DIGIT = "%01d";
     private static final String NEG_TWO_DIGITS = "-%02d";
@@ -110,7 +113,7 @@ public class CountingTimerView extends View {
             mSpacingRatio = spacingRatio;
 
             if (TextUtils.isEmpty(allDigits)) {
-                Log.wtf("Locale digits missing - using English");
+                Log.w(LOG_TAG, "Locale digits missing - using English");
                 allDigits = "0123456789";
             }
 

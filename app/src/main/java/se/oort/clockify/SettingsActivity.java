@@ -28,6 +28,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -44,6 +45,7 @@ import java.util.TimeZone;
 public class SettingsActivity extends PreferenceActivity
         implements Preference.OnPreferenceChangeListener {
 
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/SettingsActivity";
     private static final int ALARM_STREAM_TYPE_BIT =
             1 << AudioManager.STREAM_ALARM;
 
@@ -285,7 +287,7 @@ public class SettingsActivity extends PreferenceActivity
         int minLength = ids.length;
         if (ids.length != labels.length) {
             minLength = Math.min(minLength, labels.length);
-            Log.e("Timezone ids and labels have different length!");
+            Log.e(LOG_TAG, "Timezone ids and labels have different length!");
         }
         List<TimeZoneRow> timezones = new ArrayList<TimeZoneRow>();
         for (int i = 0; i < minLength; i++) {

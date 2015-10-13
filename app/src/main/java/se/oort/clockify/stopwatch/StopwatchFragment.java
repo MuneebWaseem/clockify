@@ -16,6 +16,7 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.preference.PreferenceManager;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +37,8 @@ import se.oort.clockify.CircleButtonsLayout;
 import se.oort.clockify.CircleTimerView;
 import se.oort.clockify.DeskClock;
 import se.oort.clockify.DeskClockFragment;
-import se.oort.clockify.Log;
 import se.oort.clockify.R;
+import se.oort.clockify.SpotifyProxy;
 import se.oort.clockify.Utils;
 import se.oort.clockify.timer.CountingTimerView;
 
@@ -46,6 +47,8 @@ import java.util.List;
 
 public class StopwatchFragment extends DeskClockFragment
         implements OnSharedPreferenceChangeListener {
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/StopwatchFragment";
+
     private static final boolean DEBUG = false;
 
     private static final String TAG = "StopwatchFragment";
@@ -275,7 +278,7 @@ public class StopwatchFragment extends DeskClockFragment
                 acquireWakeLock();
                 break;
             default:
-                Log.wtf("Illegal state " + mState
+                Log.w(LOG_TAG, "Illegal state " + mState
                         + " while pressing the right stopwatch button");
                 break;
         }
@@ -313,7 +316,7 @@ public class StopwatchFragment extends DeskClockFragment
                         break;
                     default:
                         // Happens in monkey tests
-                        Log.i("Illegal state " + mState
+                        Log.i(LOG_TAG, "Illegal state " + mState
                                 + " while pressing the left stopwatch button");
                         break;
                 }
@@ -379,7 +382,7 @@ public class StopwatchFragment extends DeskClockFragment
                                         View view, int transitionType) {
                 if (view == mLapsList) {
                     if (transitionType == LayoutTransition.DISAPPEARING) {
-                        if (DEBUG) Log.v("StopwatchFragment.start laps-list disappearing");
+                        if (DEBUG) Log.v(LOG_TAG, "StopwatchFragment.start laps-list disappearing");
                         boolean shiftX = view.getResources().getConfiguration().orientation
                                 == Configuration.ORIENTATION_LANDSCAPE;
                         int first = mLapsList.getFirstVisiblePosition();
@@ -413,7 +416,7 @@ public class StopwatchFragment extends DeskClockFragment
             public void endTransition(LayoutTransition transition, ViewGroup container,
                                       View view, int transitionType) {
                 if (transitionType == LayoutTransition.DISAPPEARING) {
-                    if (DEBUG) Log.v("StopwatchFragment.end laps-list disappearing");
+                    if (DEBUG) Log.v(LOG_TAG, "StopwatchFragment.end laps-list disappearing");
                     int last = mLapsList.getLastVisiblePosition();
                     for (int visibleIndex = mLapsList.getFirstVisiblePosition();
                          visibleIndex <= last; visibleIndex++) {
@@ -524,7 +527,7 @@ public class StopwatchFragment extends DeskClockFragment
     }
 
     private void doStop() {
-        if (DEBUG) Log.v("StopwatchFragment.doStop");
+        if (DEBUG) Log.v(LOG_TAG, "StopwatchFragment.doStop");
         stopUpdateThread();
         mTime.pauseIntervalAnimation();
         mTimeText.setTime(mAccumulatedTime, true, true);
@@ -535,7 +538,7 @@ public class StopwatchFragment extends DeskClockFragment
     }
 
     private void doStart(long time) {
-        if (DEBUG) Log.v("StopwatchFragment.doStart");
+        if (DEBUG) Log.v(LOG_TAG, "StopwatchFragment.doStart");
         mStartTime = time;
         startUpdateThread();
         mTimeText.blinkTimeStr(false);
@@ -547,13 +550,13 @@ public class StopwatchFragment extends DeskClockFragment
     }
 
     private void doLap() {
-        if (DEBUG) Log.v("StopwatchFragment.doLap");
+        if (DEBUG) Log.v(LOG_TAG, "StopwatchFragment.doLap");
         showLaps();
         setButtons(Stopwatches.STOPWATCH_RUNNING);
     }
 
     private void doReset() {
-        if (DEBUG) Log.v("StopwatchFragment.doReset");
+        if (DEBUG) Log.v(LOG_TAG, "StopwatchFragment.doReset");
         SharedPreferences prefs =
                 PreferenceManager.getDefaultSharedPreferences(getActivity());
         Utils.clearSwSharedPref(prefs);
@@ -685,7 +688,7 @@ public class StopwatchFragment extends DeskClockFragment
         long prevLapElapsedTime = 0;
         for (int lap_i = numLaps - 1; lap_i >= 0; lap_i--) {
             long lap = input[lap_i];
-            Log.v("lap "+lap_i+": "+lap);
+            Log.v(LOG_TAG, "lap "+lap_i+": "+lap);
             output[lap_i] = lap - prevLapElapsedTime;
             prevLapElapsedTime = lap;
         }
@@ -838,7 +841,7 @@ public class StopwatchFragment extends DeskClockFragment
      * Show or hide the laps-list
      */
     private void showLaps() {
-        if (DEBUG) Log.v(String.format("StopwatchFragment.showLaps: count=%d",
+        if (DEBUG) Log.v(LOG_TAG, String.format("StopwatchFragment.showLaps: count=%d",
                 mLapsAdapter.getCount()));
 
         boolean lapsVisible = mLapsAdapter.getCount() > 0;

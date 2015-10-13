@@ -29,6 +29,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.util.Log;
 
 import se.oort.clockify.provider.Alarm;
 import se.oort.clockify.timer.TimerObj;
@@ -37,6 +38,8 @@ import se.oort.clockify.timer.TimerObj;
  * DialogFragment to edit label.
  */
 public class LabelDialogFragment extends DialogFragment {
+
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/LabelDialogFragment";
 
     private static final String KEY_LABEL = "label";
     private static final String KEY_ALARM = "alarm";
@@ -129,7 +132,7 @@ public class LabelDialogFragment extends DialogFragment {
         } else if (timer != null) {
             set(timer, tag, label);
         } else {
-            Log.e("No alarm or timer available.");
+            Log.e(LOG_TAG, "No alarm or timer available.");
         }
     }
 
@@ -139,7 +142,7 @@ public class LabelDialogFragment extends DialogFragment {
         if (activity instanceof AlarmLabelDialogHandler) {
             ((DeskClock) getActivity()).onDialogLabelSet(alarm, label, tag);
         } else {
-            Log.e("Error! Activities that use LabelDialogFragment must implement "
+            Log.e(LOG_TAG, "Error! Activities that use LabelDialogFragment must implement "
                     + "AlarmLabelDialogHandler");
         }
         dismiss();
@@ -151,7 +154,7 @@ public class LabelDialogFragment extends DialogFragment {
         if (activity instanceof TimerLabelDialogHandler){
             ((DeskClock) getActivity()).onDialogLabelSet(timer, label, tag);
         } else {
-            Log.e("Error! Activities that use LabelDialogFragment must implement "
+            Log.e(LOG_TAG, "Error! Activities that use LabelDialogFragment must implement "
                     + "AlarmLabelDialogHandler or TimerLabelDialogHandler");
         }
         dismiss();

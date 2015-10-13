@@ -22,9 +22,10 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import se.oort.clockify.AlarmAlertWakeLock;
-import se.oort.clockify.Log;
+import se.oort.clockify.SpotifyProxy;
 import se.oort.clockify.provider.AlarmInstance;
 
 /**
@@ -32,6 +33,8 @@ import se.oort.clockify.provider.AlarmInstance;
  * {@link AlarmActivity} as well as {@link AlarmKlaxon}.
  */
 public class AlarmService extends Service {
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/AlarmService";
+
     // A public action send by AlarmService when the alarm has started.
     public static final String ALARM_ALERT_ACTION = "com.android.deskclock.ALARM_ALERT";
 
@@ -94,7 +97,7 @@ public class AlarmService extends Service {
     };
 
     private void startAlarm(AlarmInstance instance) {
-        Log.v("AlarmService.start with instance: " + instance.mId);
+        Log.v(LOG_TAG, "AlarmService.start with instance: " + instance.mId);
         if (mCurrentAlarm != null) {
             AlarmStateManager.setMissedState(this, mCurrentAlarm);
             stopCurrentAlarm();
@@ -112,11 +115,11 @@ public class AlarmService extends Service {
 
     private void stopCurrentAlarm() {
         if (mCurrentAlarm == null) {
-            Log.v("There is no current alarm to stop");
+            Log.v(LOG_TAG, "There is no current alarm to stop");
             return;
         }
 
-        Log.v("AlarmService.stop with instance: " + mCurrentAlarm.mId);
+        Log.v(LOG_TAG, "AlarmService.stop with instance: " + mCurrentAlarm.mId);
         AlarmKlaxon.stop(this);
         mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE);
         sendBroadcast(new Intent(ALARM_DONE_ACTION));
@@ -132,27 +135,27 @@ public class AlarmService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.v("AlarmService.onStartCommand() with intent: " + intent.toString());
+        Log.v(LOG_TAG, "AlarmService.onStartCommand() with intent: " + intent.toString());
 
         long instanceId = AlarmInstance.getId(intent.getData());
         if (START_ALARM_ACTION.equals(intent.getAction())) {
             ContentResolver cr = this.getContentResolver();
             AlarmInstance instance = AlarmInstance.getInstance(cr, instanceId);
             if (instance == null) {
-                Log.e("No instance found to start alarm: " + instanceId);
+                Log.e(LOG_TAG, "No instance found to start alarm: " + instanceId);
                 if (mCurrentAlarm != null) {
                     // Only release lock if we are not firing alarm
                     AlarmAlertWakeLock.releaseCpuLock();
                 }
                 return Service.START_NOT_STICKY;
             } else if (mCurrentAlarm != null && mCurrentAlarm.mId == instanceId) {
-                Log.e("Alarm already started for instance: " + instanceId);
+                Log.e(LOG_TAG, "Alarm already started for instance: " + instanceId);
                 return Service.START_NOT_STICKY;
             }
             startAlarm(instance);
         } else if(STOP_ALARM_ACTION.equals(intent.getAction())) {
             if (mCurrentAlarm != null && mCurrentAlarm.mId != instanceId) {
-                Log.e("Can't stop alarm for instance: " + instanceId +
+                Log.e(LOG_TAG, "Can't stop alarm for instance: " + instanceId +
                     " because current alarm is: " + mCurrentAlarm.mId);
                 return Service.START_NOT_STICKY;
             }
@@ -164,7 +167,7 @@ public class AlarmService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.v("AlarmService.onDestroy() called");
+        Log.v(LOG_TAG, "AlarmService.onDestroy() called");
         super.onDestroy();
         stopCurrentAlarm();
     }

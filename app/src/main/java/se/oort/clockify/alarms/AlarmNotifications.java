@@ -22,18 +22,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.provider.Settings;
+import android.util.Log;
 
 import se.oort.clockify.AlarmClockFragment;
 import se.oort.clockify.AlarmUtils;
 import se.oort.clockify.DeskClock;
-import se.oort.clockify.Log;
 import se.oort.clockify.R;
+import se.oort.clockify.SpotifyProxy;
 import se.oort.clockify.provider.Alarm;
 import se.oort.clockify.provider.AlarmInstance;
 
 public final class AlarmNotifications {
     // System intent action to notify that we change the alarm text.
     public static final String SYSTEM_ALARM_CHANGE_ACTION = "android.intent.action.ALARM_CHANGED";
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/AlarmNotifications";
 
     public static void broadcastNextAlarm(Context context, AlarmInstance instance)  {
         String timeString = "";
@@ -44,7 +46,7 @@ public final class AlarmNotifications {
         }
 
         // Set and notify next alarm text to system
-        Log.i("Displaying next alarm time: \'" + timeString + '\'');
+        Log.i(LOG_TAG, "Displaying next alarm time: \'" + timeString + '\'');
         Settings.System.putString(context.getContentResolver(),
                 Settings.System.NEXT_ALARM_FORMATTED,
                 timeString);
@@ -54,7 +56,7 @@ public final class AlarmNotifications {
     }
 
     public static void showLowPriorityNotification(Context context, AlarmInstance instance) {
-        Log.v("Displaying low priority notification for alarm instance: " + instance.mId);
+        Log.v(LOG_TAG, "Displaying low priority notification for alarm instance: " + instance.mId);
         NotificationManager nm = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -95,7 +97,7 @@ public final class AlarmNotifications {
     }
 
     public static void showHighPriorityNotification(Context context, AlarmInstance instance) {
-        Log.v("Displaying high priority notification for alarm instance: " + instance.mId);
+        Log.v(LOG_TAG, "Displaying high priority notification for alarm instance: " + instance.mId);
         NotificationManager nm = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -130,7 +132,7 @@ public final class AlarmNotifications {
     }
 
     public static void showSnoozeNotification(Context context, AlarmInstance instance) {
-        Log.v("Displaying snoozed notification for alarm instance: " + instance.mId);
+        Log.v(LOG_TAG, "Displaying snoozed notification for alarm instance: " + instance.mId);
         NotificationManager nm = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -165,7 +167,7 @@ public final class AlarmNotifications {
     }
 
     public static void showMissedNotification(Context context, AlarmInstance instance) {
-        Log.v("Displaying missed notification for alarm instance: " + instance.mId);
+        Log.v(LOG_TAG, "Displaying missed notification for alarm instance: " + instance.mId);
         NotificationManager nm = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -197,7 +199,7 @@ public final class AlarmNotifications {
     }
 
     public static void showAlarmNotification(Context context, AlarmInstance instance) {
-        Log.v("Displaying alarm notification for alarm instance: " + instance.mId);
+        Log.v(LOG_TAG, "Displaying alarm notification for alarm instance: " + instance.mId);
         NotificationManager nm = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -253,7 +255,7 @@ public final class AlarmNotifications {
     }
 
     public static void clearNotification(Context context, AlarmInstance instance) {
-        Log.v("Clearing notifications for alarm instance: " + instance.mId);
+        Log.v(LOG_TAG, "Clearing notifications for alarm instance: " + instance.mId);
         NotificationManager nm = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
         nm.cancel(instance.hashCode());

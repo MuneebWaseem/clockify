@@ -27,12 +27,14 @@ import android.media.MediaPlayer.OnErrorListener;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 /**
  * Play the timer's ringtone. Will continue playing the same alarm until service is stopped.
  */
 public class TimerRingService extends Service implements AudioManager.OnAudioFocusChangeListener {
 
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/TimerRingService";
     private boolean mPlaying = false;
     private MediaPlayer mMediaPlayer;
     private TelephonyManager mTelephonyManager;
@@ -101,17 +103,13 @@ public class TimerRingService extends Service implements AudioManager.OnAudioFoc
             return;
         }
 
-        if (Log.LOGV) {
-            Log.v("TimerRingService.play()");
-        }
-
         // TODO: Reuse mMediaPlayer instead of creating a new one and/or use
         // RingtoneManager.
         mMediaPlayer = new MediaPlayer();
         mMediaPlayer.setOnErrorListener(new OnErrorListener() {
             @Override
             public boolean onError(MediaPlayer mp, int what, int extra) {
-                Log.e("Error occurred while playing audio.");
+                Log.e(LOG_TAG, "Error occurred while playing audio.");
                 mp.stop();
                 mp.release();
                 mMediaPlayer = null;
@@ -124,7 +122,7 @@ public class TimerRingService extends Service implements AudioManager.OnAudioFoc
             // resource at a low volume to not disrupt the call.
             if (mTelephonyManager.getCallState()
                     != TelephonyManager.CALL_STATE_IDLE) {
-                Log.v("Using the in-call alarm");
+                Log.v(LOG_TAG, "Using the in-call alarm");
                 mMediaPlayer.setVolume(IN_CALL_VOLUME, IN_CALL_VOLUME);
                 setDataSourceFromResource(getResources(), mMediaPlayer,
                         R.raw.in_call_alarm);
@@ -135,7 +133,7 @@ public class TimerRingService extends Service implements AudioManager.OnAudioFoc
             }
             startAlarm(mMediaPlayer);
         } catch (Exception ex) {
-            Log.v("Using the fallback ringtone");
+            Log.v(LOG_TAG, "Using the fallback ringtone");
             // The alert may be on the sd card which could be busy right
             // now. Use the fallback ringtone.
             try {
@@ -146,7 +144,7 @@ public class TimerRingService extends Service implements AudioManager.OnAudioFoc
                 startAlarm(mMediaPlayer);
             } catch (Exception ex2) {
                 // At this point we just don't play anything.
-                Log.e("Failed to play fallback ringtone", ex2);
+                Log.e(LOG_TAG, "Failed to play fallback ringtone", ex2);
             }
         }
 
@@ -184,7 +182,6 @@ public class TimerRingService extends Service implements AudioManager.OnAudioFoc
      * Stops timer audio
      */
     public void stop() {
-        if (Log.LOGV) Log.v("TimerRingService.stop()");
         if (mPlaying) {
             mPlaying = false;
 

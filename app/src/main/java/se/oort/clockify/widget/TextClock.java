@@ -30,7 +30,6 @@ import android.provider.Settings;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
 import android.widget.TextView;
-import se.oort.clockify.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.*;

@@ -25,10 +25,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 
-import se.oort.clockify.Log;
+import se.oort.clockify.SpotifyProxy;
 
 public class ClockProvider extends ContentProvider {
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/ClockProvider";
     private ClockDatabaseHelper mOpenHelper;
 
     private static final int ALARMS = 1;
@@ -98,7 +100,7 @@ public class ClockProvider extends ContentProvider {
                               null, null, sort);
 
         if (ret == null) {
-            Log.e("Alarms.query: failed");
+            Log.e(LOG_TAG, "Alarms.query: failed");
         } else {
             ret.setNotificationUri(getContext().getContentResolver(), uri);
         }
@@ -156,7 +158,7 @@ public class ClockProvider extends ContentProvider {
                         "Cannot update URL: " + uri);
             }
         }
-        if (Log.LOGV) Log.v("*** notifyChange() id: " + alarmId + " url " + uri);
+        Log.v(LOG_TAG, "*** notifyChange() id: " + alarmId + " url " + uri);
         getContext().getContentResolver().notifyChange(uri, null);
         return count;
     }

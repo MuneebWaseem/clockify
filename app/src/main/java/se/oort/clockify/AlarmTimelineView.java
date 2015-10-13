@@ -30,6 +30,7 @@ import android.text.format.DateFormat;
 import android.text.format.DateUtils;
 import android.util.AttributeSet;
 import android.view.View;
+import android.util.Log;
 
 import se.oort.clockify.provider.Alarm;
 
@@ -49,7 +50,7 @@ import java.util.TreeMap;
  */
 public class AlarmTimelineView extends View {
 
-    private static final String TAG = "AlarmTimelineView";
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG  + "/AlarmTimelineView";
 
     private static final String FORMAT_12_HOUR = "E h mm a";
     private static final String FORMAT_24_HOUR = "E H mm";
@@ -315,8 +316,8 @@ public class AlarmTimelineView extends View {
             if (y > maxY) {
                 // If the y value has somehow exceeded the timeline length, draw node on end of
                 // timeline.  We should never reach this state.
-                Log.wtf("Y-value exceeded timeline length.  Should never happen.");
-                Log.wtf("alarm date=" + node.date.getTime() + ", isRepeating=" + node.isRepeating
+                Log.w(LOG_TAG, "Y-value exceeded timeline length.  Should never happen.");
+                Log.w(LOG_TAG, "alarm date=" + node.date.getTime() + ", isRepeating=" + node.isRepeating
                         + ", y=" + y + ", maxY=" + maxY);
                 y = maxY;
             }

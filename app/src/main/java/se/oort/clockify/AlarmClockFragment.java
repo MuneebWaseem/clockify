@@ -63,6 +63,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import android.util.Log;
 
 import com.android.datetimepicker.time.RadialPickerLayout;
 import com.android.datetimepicker.time.TimePickerDialog;
@@ -106,6 +107,7 @@ public class AlarmClockFragment extends DeskClockFragment implements
     private static final String KEY_PREVIOUS_DAY_MAP = "previousDayMap";
     private static final String KEY_SELECTED_ALARM = "selectedAlarm";
     private static final String KEY_DELETE_CONFIRMATION = "deleteConfirmation";
+    private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/AlarmClockFragment";
 
     private static final int REQUEST_CODE_RINGTONE = 1;
 
@@ -649,7 +651,7 @@ public class AlarmClockFragment extends DeskClockFragment implements
             uri = Alarm.NO_RINGTONE_URI;
         }
         mSelectedAlarm.alert = uri;
-        android.util.Log.d("Clockify", "Got ringtone " + uri);
+        android.util.Log.d(LOG_TAG, "Got ringtone " + uri);
         asyncUpdateAlarm(mSelectedAlarm, false);
     }
 
@@ -661,7 +663,7 @@ public class AlarmClockFragment extends DeskClockFragment implements
                     saveRingtoneUri(data);
                     break;
                 default:
-                    Log.w("Unhandled request code in onActivityResult: " + requestCode);
+                    Log.d(LOG_TAG, "Unhandled request code in onActivityResult: " + requestCode);
             }
         }
     }
@@ -792,7 +794,7 @@ public class AlarmClockFragment extends DeskClockFragment implements
             if (!getCursor().moveToPosition(position)) {
                 // May happen if the last alarm was deleted and the cursor refreshed while the
                 // list is updated.
-                Log.v("couldn't move cursor to position " + position);
+                Log.v(LOG_TAG, "couldn't move cursor to position " + position);
                 return null;
             }
             View v;
@@ -894,7 +896,7 @@ public class AlarmClockFragment extends DeskClockFragment implements
                             startTop = top + (i > 0 ? childHeight : -childHeight);
                         }
 
-                        Log.d("Start Top: " + startTop + ", Top: " + top);
+                        Log.d(LOG_TAG, "Start Top: " + startTop + ", Top: " + top);
                         // If the starting position of the child view is different from the
                         // current position, animate the child.
                         if (startTop != top) {
@@ -966,7 +968,7 @@ public class AlarmClockFragment extends DeskClockFragment implements
                     if (firstAnimation) {
                         if (mAddedView != null) {
                             // If there is an added view, prepare animation for the added view.
-                            Log.d("Animating added view...");
+                            Log.d(LOG_TAG, "Animating added view...");
                             mAddedView.animate().alpha(1.0f)
                                 .setDuration(ANIMATION_DURATION)
                                 .withEndAction(new Runnable() {
