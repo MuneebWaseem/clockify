@@ -183,6 +183,7 @@ public class DeskClock extends Activity implements LabelDialogFragment.TimerLabe
         AlarmStateManager.updateNextAlarm(this);
 
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        startActivity(new Intent(this, SpotifyAuthenticate.class));
     }
 
     @Override

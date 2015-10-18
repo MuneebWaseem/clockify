@@ -19,6 +19,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import android.util.Log;
+import android.view.WindowManager;
 
 public class SpotifyAuthenticator extends Activity {
 
@@ -31,20 +32,33 @@ public class SpotifyAuthenticator extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(LOG_TAG, "Starting authenticator");
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d(LOG_TAG, "Starting authenticator");
+        super.onResume();
+
         PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
         wl = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.PARTIAL_WAKE_LOCK, "Clockify");
         wl.acquire();
 
         setContentView(R.layout.activity_spotify_init);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                + WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD|
+                + WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|
+                + WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+
         AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
                 AuthenticationResponse.Type.TOKEN,
                 REDIRECT_URI);
         builder.setScopes(new String[]{"user-read-private", "streaming", "playlist-read-private"});
         AuthenticationRequest request = builder.build();
 
-        AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
+        Intent intent = AuthenticationClient.createLoginActivityIntent(this, request);
+        intent.setFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK | Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+        startActivityForResult(intent, REQUEST_CODE);
         Log.d(LOG_TAG, "Authenticator launched login activity");
     }
 

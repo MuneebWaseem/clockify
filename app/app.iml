@@ -99,6 +99,7 @@
     <orderEntry type="library" exported="" name="retrofit-1.9.0" level="project" />
     <orderEntry type="library" exported="" name="okio-1.2.0" level="project" />
     <orderEntry type="module" module-name="spotify-auth-1.0.0-beta10" exported="" />
+    <orderEntry type="module" module-name="volley" exported="" />
     <orderEntry type="module" module-name="datetimepicker" exported="" />
     <orderEntry type="module" module-name="spotify-player-1.0.0-beta10" exported="" />
     <orderEntry type="module" module-name="spotify-web-api-android-0.1.1" exported="" />

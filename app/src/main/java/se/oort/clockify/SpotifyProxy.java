@@ -75,7 +75,7 @@ public class SpotifyProxy
         }
         callbacks.add(callback);
         Intent intent = new Intent(context, SpotifyAuthenticator.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         Log.d(LOG_TAG, "Going to launch " + intent);
         context.startActivity(intent);
         Log.d(LOG_TAG, "Launched");

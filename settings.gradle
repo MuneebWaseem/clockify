@@ -1,1 +1,1 @@
-include ':app', ':datetimepicker', ':spotify-auth-1.0.0-beta10', ':spotify-player-1.0.0-beta10', ':spotify-web-api-android-0.1.1'
+include ':app', ':datetimepicker', ':spotify-auth-1.0.0-beta10', ':spotify-player-1.0.0-beta10', ':spotify-web-api-android-0.1.1', ':volley'

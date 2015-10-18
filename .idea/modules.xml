@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/spotify-auth-1.0.0-beta10/spotify-auth-1.0.0-beta10.iml" filepath="$PROJECT_DIR$/spotify-auth-1.0.0-beta10/spotify-auth-1.0.0-beta10.iml" />
       <module fileurl="file://$PROJECT_DIR$/spotify-player-1.0.0-beta10/spotify-player-1.0.0-beta10.iml" filepath="$PROJECT_DIR$/spotify-player-1.0.0-beta10/spotify-player-1.0.0-beta10.iml" />
       <module fileurl="file://$PROJECT_DIR$/spotify-web-api-android-0.1.1/spotify-web-api-android-0.1.1.iml" filepath="$PROJECT_DIR$/spotify-web-api-android-0.1.1/spotify-web-api-android-0.1.1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/volley/volley.iml" filepath="$PROJECT_DIR$/volley/volley.iml" />
     </modules>
   </component>
 </project>
