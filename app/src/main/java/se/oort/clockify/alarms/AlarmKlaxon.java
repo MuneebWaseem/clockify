@@ -45,58 +45,69 @@ public class AlarmKlaxon {
     // Volume suggested by media team for in-call alarms.
     private static final float IN_CALL_VOLUME = 0.125f;
 
-    private static boolean sStarted = false;
     private static MediaPlayer sMediaPlayer = null;
-    private static SpotifyProxy spotify = SpotifyProxy.getInstance();
-
-    private static boolean isNetworkAvailable(Context context) {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-    }
 
     public static void stop(Context context) {
         Log.v(LOG_TAG, "AlarmKlaxon.stop()");
 
-        if (sStarted) {
-            sStarted = false;
-            spotify.pause(context);
-            // Stop audio playing
-            if (sMediaPlayer != null) {
-                sMediaPlayer.stop();
-                AudioManager audioManager = (AudioManager)
-                        context.getSystemService(Context.AUDIO_SERVICE);
-                audioManager.abandonAudioFocus(null);
-                sMediaPlayer.release();
-                sMediaPlayer = null;
-            }
-
-            ((Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE)).cancel();
+        SpotifyProxy.getInstance().pause(context);
+        // Stop audio playing
+        if (sMediaPlayer != null) {
+            sMediaPlayer.stop();
+            AudioManager audioManager = (AudioManager)
+                    context.getSystemService(Context.AUDIO_SERVICE);
+            audioManager.abandonAudioFocus(null);
+            sMediaPlayer.release();
+            sMediaPlayer = null;
         }
+
+        ((Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE)).cancel();
     }
 
-    public static void start(final Context context, AlarmInstance instance,
-            boolean inTelephoneCall) {
+    public static void start(final Context context, final AlarmInstance instance, final boolean inTelephoneCall) {
+
+        Log.v(LOG_TAG, "AlarmKlaxon.start()");
 
         // Make sure we are stop before starting
         stop(context);
 
-        Log.v(LOG_TAG, "AlarmKlaxon.start()");
+        Uri alarmNoise = instance.mRingtone;
 
-        if (!AlarmInstance.NO_RINGTONE_URI.equals(instance.mRingtone)) {
-            Uri alarmNoise = instance.mRingtone;
-            boolean spotifyPlaying = false;
-            // Fall back on the default alarm if the database does not have an
-            // alarm stored.<
-            if (alarmNoise == null || !isNetworkAvailable(context)) {
-                alarmNoise = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-                Log.v(LOG_TAG, "Using default alarm: " + alarmNoise.toString());
-            } else {
-                spotifyPlaying = true;
+        try {
+            // Check if we are in a call. If we are, use the in-call alarm
+            // resource at a low volume to not disrupt the call.
+            if (inTelephoneCall) {
+                AudioManager audio = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+                audio.setStreamVolume(AudioManager.STREAM_MUSIC,
+                        (int) (IN_CALL_VOLUME * audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC)),
+                        0);
             }
+            String[] parts = instance.mRingtone.toString().split("/");
+            SpotifyProxy.getInstance().play(context, parts[0], new SpotifyProxy.ResponseHandler<String>() {
+                @Override
+                public void handle(String s) {
+                    Log.d(LOG_TAG, "Started playing " + instance.mRingtone);
+                }
+                @Override
+                public void error(String s) {
+                    Log.e(LOG_TAG, "Error playing " + instance.mRingtone + ": " + s);
+                    startFallbackAlarm(context, inTelephoneCall);
+                }
+            });
+        } catch (Throwable ex) {
+            Log.e(LOG_TAG, "Error playing " + instance.mRingtone + ": " + ex);
+            startFallbackAlarm(context, inTelephoneCall);
+        }
 
-            // TODO: Reuse mMediaPlayer instead of creating a new one and/or use RingtoneManager.
+        if (instance.mVibrate) {
+            Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+            vibrator.vibrate(sVibratePattern, 0);
+        }
+
+    }
+
+    private static void startFallbackAlarm(final Context context, boolean inPhoneCall) {
+        try {
             sMediaPlayer = new MediaPlayer();
             sMediaPlayer.setOnErrorListener(new OnErrorListener() {
                 @Override
@@ -106,76 +117,21 @@ public class AlarmKlaxon {
                     return true;
                 }
             });
-
-            try {
-                // Check if we are in a call. If we are, use the in-call alarm
-                // resource at a low volume to not disrupt the call.
-                if (inTelephoneCall) {
-                    Log.v(LOG_TAG, "Using the in-call alarm");
-                    sMediaPlayer.setVolume(IN_CALL_VOLUME, IN_CALL_VOLUME);
-                    if (spotifyPlaying) {
-                        AudioManager audio = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                        audio.setStreamVolume(AudioManager.STREAM_MUSIC,
-                                (int) (IN_CALL_VOLUME * audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC)),
-                                0);
-                    } else {
-                        setDataSourceFromResource(context, sMediaPlayer, R.raw.in_call_alarm);
-                    }
-                } else {
-                    if (!spotifyPlaying) {
-                        sMediaPlayer.setDataSource(context, alarmNoise);
-                    }
-                }
-                startAlarm(context, sMediaPlayer, spotifyPlaying, alarmNoise);
-            } catch (Exception ex) {
-                Log.v(LOG_TAG, "Using the fallback ringtone: " + ex);
-                // The alarmNoise may be on the sd card which could be busy right
-                // now. Use the fallback ringtone.
-                try {
-                    // Must reset the media player to clear the error state.
-                    sMediaPlayer.reset();
-                    setDataSourceFromResource(context, sMediaPlayer, R.raw.fallbackring);
-                    startAlarm(context, sMediaPlayer, spotifyPlaying, alarmNoise);
-                } catch (Exception ex2) {
-                    // At this point we just don't play anything.
-                    Log.e(LOG_TAG, "Failed to play fallback ringtone", ex2);
-                }
+            Uri alarmNoise = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+            sMediaPlayer.setDataSource(context, alarmNoise);
+            if (inPhoneCall) {
+                sMediaPlayer.setVolume(IN_CALL_VOLUME, IN_CALL_VOLUME);
             }
-        }
-
-        if (instance.mVibrate) {
-            Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-            vibrator.vibrate(sVibratePattern, 0);
-        }
-
-        sStarted = true;
-    }
-
-    // Do the common stuff when starting the alarm.
-    private static void startAlarm(Context context, MediaPlayer player, boolean spotifyPlaying, Uri uri) throws IOException {
-        if (spotifyPlaying) {
-            String[] parts = uri.toString().split("/");
-            spotify.play(context, parts[0]);
-        } else {
+            sMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+            sMediaPlayer.setLooping(true);
+            sMediaPlayer.prepare();
             AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-            // do not play alarms if stream volume is 0 (typically because ringer mode is silent).
-            if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
-                player.setAudioStreamType(AudioManager.STREAM_ALARM);
-                player.setLooping(true);
-                player.prepare();
-                audioManager.requestAudioFocus(null,
-                        AudioManager.STREAM_ALARM, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
-                player.start();
-            }
+            audioManager.requestAudioFocus(null,
+                    AudioManager.STREAM_ALARM, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+            sMediaPlayer.start();
+        } catch (Throwable t) {
+            Log.e(LOG_TAG, "Error playing fallback alarm: " + t);
         }
     }
 
-    private static void setDataSourceFromResource(Context context, MediaPlayer player, int res)
-            throws IOException {
-        AssetFileDescriptor afd = context.getResources().openRawResourceFd(res);
-        if (afd != null) {
-            player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-            afd.close();
-        }
-    }
 }

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,17 +19,66 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
 import com.spotify.sdk.android.authentication.AuthenticationResponse;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Callable;
 
 public class SpotifyAuthenticate extends Activity {
 
     private static final String LOG_TAG = SpotifyProxy.ROOT_LOG_TAG + "/SpotifyAuthenticate";
-    private static final String CLIENT_ID = "f38c5148ab234d2bb5b1ba78f49e7ded";
-    private static final String REDIRECT_URI = "clockify://callback";
 
-    public static final int REQUEST_CODE_CANCELED = 1;
+    private StringRequest createTokenRequest(final String code, final Uri uri, final SpotifyProxy.ResponseHandler<String> handler) {
+        return new StringRequest(Request.Method.POST, uri.toString(), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(LOG_TAG, "Got response " + response);
+                try {
+                    JSONObject json = new JSONObject(response);
+                    handler.handle(json.getString("refresh_token"));
+                } catch (JSONException e) {
+                    handler.error(e.toString());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                handler.error(error.toString());
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("grant_type","authorization_code");
+                params.put("code", code);
+                params.put("redirect_uri",SpotifyProxy.REDIRECT_URI);
+                Log.d(LOG_TAG, "Using params " + params);
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Authorization", "Basic " + Base64.encodeToString((SpotifyProxy.CLIENT_ID + ":" + SpotifyProxy.CLIENT_SECRET).getBytes(), Base64.NO_WRAP));
+                Log.d(LOG_TAG, "Using headers " + params);
+                return params;
+            }
+        };
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +86,9 @@ public class SpotifyAuthenticate extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_spotify_authenticate);
 
-        AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
+        AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(SpotifyProxy.CLIENT_ID,
                 AuthenticationResponse.Type.CODE,
-                REDIRECT_URI);
+                SpotifyProxy.REDIRECT_URI);
         builder.setScopes(new String[]{"user-read-private", "streaming", "playlist-read-private"});
         Uri uri = builder.build().toUri();
 
@@ -63,11 +113,34 @@ public class SpotifyAuthenticate extends Activity {
             }
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                Uri uri = Uri.parse(url);
-                if (url.startsWith(REDIRECT_URI)) {
-                    Uri.Builder uriBuilder = new Uri.Builder().scheme("https").authority("accounts.spotify.com").appendPath("api/token");
-                    Volley.
-                    Log.d(LOG_TAG, "Got " + uri);
+                final Uri uri = Uri.parse(url);
+                Log.d(LOG_TAG, "Got " + uri);
+                if (url.startsWith(SpotifyProxy.REDIRECT_URI)) {
+                    Uri tokenURI = new Uri.Builder().scheme("https").authority("accounts.spotify.com").appendPath("api").appendPath("token").build();
+                    Log.d(LOG_TAG, "Going to POST to " + tokenURI);
+                    Volley.newRequestQueue(SpotifyAuthenticate.this).add(createTokenRequest(uri.getQueryParameter("code"), tokenURI, new SpotifyProxy.ResponseHandler<String>() {
+                        @Override
+                        public void handle(String s) {
+                            SpotifyProxy.getInstance().setRefreshToken(SpotifyAuthenticate.this, s, new SpotifyProxy.ResponseHandler<String>() {
+                                @Override
+                                public void handle(String s) {
+                                    progressDialog.dismiss();
+                                    SpotifyAuthenticate.this.finish();
+                                }
+                                public void error(String s) {
+                                    Log.e(LOG_TAG, "Error setting refresh token: " + s);
+                                    Toast.makeText(SpotifyAuthenticate.this, s, Toast.LENGTH_LONG);
+                                }
+                            });
+                        }
+                        @Override
+                        public void error(String s) {
+                            Log.e(LOG_TAG, "Error getting refresh token: " + s);
+                            Toast.makeText(SpotifyAuthenticate.this, s, Toast.LENGTH_LONG);
+                        }
+                    }));
+                    progressDialog.setMessage("Fetching refresh token");
+                    progressDialog.show();
                     return true;
                 } else if (uri.getAuthority().matches("^(.+\\.facebook\\.com)|(accounts\\.spotify\\.com)$")) {
                     return false;

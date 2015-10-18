@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,15 +47,16 @@ public class PlaylistPicker extends ListActivity {
         super.onCreate(savedInstanceState);
         listAdapter = new ArrayAdapter<PlaylistWrapper>(this, android.R.layout.simple_list_item_1, new ArrayList<PlaylistWrapper>());
         setListAdapter(listAdapter);
-        spotify.getPlaylists(this, new Callback<List<PlaylistSimple>>() {
-            public void success(List<PlaylistSimple> list, Response response) {
+        spotify.getPlaylists(this, new SpotifyProxy.ResponseHandler<List<PlaylistSimple>>() {
+            @Override
+            public void handle(List<PlaylistSimple> list) {
                 listAdapter.addAll(PlaylistWrapper.convert(list));
                 listAdapter.notifyDataSetChanged();
             }
-            public void failure(RetrofitError error) {
-                android.util.Log.d(LOG_TAG, "Failure fetching playlists: " + error);
+            @Override
+            public void error(String s) {
+                Toast.makeText(PlaylistPicker.this, s, Toast.LENGTH_LONG);
             }
-
         });
     }
 
