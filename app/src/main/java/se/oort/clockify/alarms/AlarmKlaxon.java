@@ -76,10 +76,14 @@ public class AlarmKlaxon {
         try {
             // Check if we are in a call. If we are, use the in-call alarm
             // resource at a low volume to not disrupt the call.
+            AudioManager audio = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
             if (inTelephoneCall) {
-                AudioManager audio = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
                 audio.setStreamVolume(AudioManager.STREAM_MUSIC,
-                        (int) (IN_CALL_VOLUME * audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC)),
+                        (int) (IN_CALL_VOLUME * audio.getStreamVolume(AudioManager.STREAM_ALARM)),
+                        0);
+            } else {
+                audio.setStreamVolume(AudioManager.STREAM_MUSIC,
+                        audio.getStreamVolume(AudioManager.STREAM_ALARM),
                         0);
             }
             String[] parts = instance.mRingtone.toString().split("/");
@@ -119,10 +123,10 @@ public class AlarmKlaxon {
             });
             Uri alarmNoise = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
             sMediaPlayer.setDataSource(context, alarmNoise);
+            sMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
             if (inPhoneCall) {
                 sMediaPlayer.setVolume(IN_CALL_VOLUME, IN_CALL_VOLUME);
             }
-            sMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
             sMediaPlayer.setLooping(true);
             sMediaPlayer.prepare();
             AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
