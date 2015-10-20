@@ -51,8 +51,7 @@ import org.json.JSONObject;
 /**
  * Created by zond on 10/7/15.
  */
-public class SpotifyProxy
-        implements PlayerNotificationCallback, ConnectionStateCallback {
+public class SpotifyProxy {
 
     public interface ResponseHandler<T> {
         void handle(T t);
@@ -214,6 +213,7 @@ public class SpotifyProxy
             public void handle(SpotifyService spotify) {
                 getPlaylists(context, spotify, handler, new ArrayList<PlaylistSimple>(), 0);
             }
+
             @Override
             public void error(String s) {
                 handler.error(s);
@@ -231,10 +231,49 @@ public class SpotifyProxy
                 Log.d(LOG_TAG, "Creating player");
                 mPlayer = Spotify.getPlayer(playerConfig, this, new Player.InitializationObserver() {
                     @Override
-                    public void onInitialized(Player player) {
+                    public void onInitialized(final Player player) {
                         Log.d(LOG_TAG, "Playing");
-                        mPlayer.addConnectionStateCallback(SpotifyProxy.this);
-                        mPlayer.addPlayerNotificationCallback(SpotifyProxy.this);
+                        mPlayer.addConnectionStateCallback(new ConnectionStateCallback() {
+                            @Override
+                            public void onLoggedIn() {
+                                Log.d(LOG_TAG, "Logged in");
+                            }
+
+                            @Override
+                            public void onLoggedOut() {
+                                Log.w(LOG_TAG, "Logged out");
+                                handler.error("Unexpectedly logged out");
+                            }
+
+                            @Override
+                            public void onLoginFailed(Throwable throwable) {
+                                Log.e(LOG_TAG, "Login failed: " + throwable);
+                                handler.error("Login failed");
+                            }
+
+                            @Override
+                            public void onTemporaryError() {
+                                Log.e(LOG_TAG, "Temporary error playing");
+                                handler.error("Temporary error playing");
+                            }
+
+                            @Override
+                            public void onConnectionMessage(String s) {
+                                Log.d(LOG_TAG, "Connection message: " + s);
+                            }
+                        });
+                        mPlayer.addPlayerNotificationCallback(new PlayerNotificationCallback() {
+                            @Override
+                            public void onPlaybackEvent(EventType eventType, PlayerState playerState) {
+                                Log.d(LOG_TAG, "Playback event: " + eventType + ", " + playerState);
+                            }
+
+                            @Override
+                            public void onPlaybackError(ErrorType errorType, String s) {
+                                Log.e(LOG_TAG, "Playback error: " + errorType + ", " + s);
+                                handler.error(s);
+                            }
+                        });
                         mPlayer.play(uri);
                         mPlayer.setRepeat(true);
                         handler.handle(uri);
@@ -246,6 +285,7 @@ public class SpotifyProxy
                     }
                 });
             }
+
             @Override
             public void error(String s) {
                 handler.error(s);
@@ -261,40 +301,4 @@ public class SpotifyProxy
             Spotify.destroyPlayer(this);
         }
     }
-
-    @Override
-    public void onLoggedIn() {
-        android.util.Log.d(LOG_TAG, "User logged in");
-    }
-
-    @Override
-    public void onLoggedOut() {
-        android.util.Log.d(LOG_TAG, "User logged out");
-    }
-
-    @Override
-    public void onLoginFailed(Throwable error) {
-        android.util.Log.d(LOG_TAG, "Login failed");
-    }
-
-    @Override
-    public void onTemporaryError() {
-        android.util.Log.d(LOG_TAG, "Temporary error occurred");
-    }
-
-    @Override
-    public void onConnectionMessage(String message) {
-        android.util.Log.d(LOG_TAG, "Received connection message: " + message);
-    }
-
-    @Override
-    public void onPlaybackEvent(EventType eventType, PlayerState playerState) {
-        android.util.Log.d(LOG_TAG, "Playback event received: " + eventType.name());
-    }
-
-    @Override
-    public void onPlaybackError(ErrorType errorType, String errorDetails) {
-        android.util.Log.d(LOG_TAG, "Playback error received: " + errorType.name());
-    }
-
 }
