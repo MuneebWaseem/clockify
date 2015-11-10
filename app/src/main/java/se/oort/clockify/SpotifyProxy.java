@@ -78,6 +78,7 @@ public class SpotifyProxy {
     private Player mPlayer;
     private Handler handler;
     private List<Runnable> callbacks = Collections.synchronizedList(new ArrayList<Runnable>());
+    private boolean okToLogOut = false;
 
     private SpotifyProxy() {
     }
@@ -233,6 +234,9 @@ public class SpotifyProxy {
                     @Override
                     public void onInitialized(final Player player) {
                         Log.d(LOG_TAG, "Playing");
+                        synchronized(SpotifyProxy.this) {
+                            okToLogOut = false;
+                        }
                         mPlayer.addConnectionStateCallback(new ConnectionStateCallback() {
                             @Override
                             public void onLoggedIn() {
@@ -242,7 +246,13 @@ public class SpotifyProxy {
                             @Override
                             public void onLoggedOut() {
                                 Log.w(LOG_TAG, "Logged out");
-                                handler.error("Unexpectedly logged out");
+                                boolean wasOk = false;
+                                synchronized (SpotifyProxy.this) {
+                                    wasOk = okToLogOut;
+                                }
+                                if (!wasOk) {
+                                    handler.error("Unexpectedly logged out");
+                                }
                             }
 
                             @Override
@@ -296,6 +306,9 @@ public class SpotifyProxy {
 
     public void pause(Context context) {
         Log.d(LOG_TAG, "Asked to pause");
+        synchronized(this) {
+            okToLogOut = true;
+        }
         if (mPlayer != null) {
             mPlayer.pause();
             Spotify.destroyPlayer(this);
