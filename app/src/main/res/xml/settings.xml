@@ -66,4 +66,7 @@
             android:entryValues="@array/volume_button_setting_values"
             android:defaultValue="0" />
     </PreferenceCategory>
+    <Preference android:title=""
+        android:key="last_error" />
+
 </PreferenceScreen>

@@ -66,6 +66,7 @@ public class SpotifyProxy {
     private static final String PREFS_KEY = "se.oort.clockify.SpotifyProxy.PREFS_KEY";
     private static final String USER_ID_KEY = "se.oort.clockify.SpotifyProxy.USER_ID_KEY";
     private static final String REFRESH_TOKEN_KEY = "se.oort.clockify.SpotifyProxy.REFRESH_TOKEN_KEY";
+    private static final String LAST_ERROR_KEY = "se.oort.clockify.SpotifyProxy.LAST_ERROR_KEY";
 
     private static final int maxPlaylistLimit = 50;
     private static final SpotifyProxy instance = new SpotifyProxy();
@@ -179,6 +180,14 @@ public class SpotifyProxy {
         };
     }
 
+    public void setLastError(Context context, String msg) {
+        getPrefs(context).edit().putString(LAST_ERROR_KEY, msg).apply();
+    }
+
+    public String getLastError(Context context) {
+        return getPrefs(context).getString(LAST_ERROR_KEY, "-");
+    }
+
     public void run(Context context, ResponseHandler<String> handler) {
         Uri tokenURI = new Uri.Builder().scheme("https").authority("accounts.spotify.com").appendPath("api").appendPath("token").build();
         Log.d(LOG_TAG, "Going to POST to " + tokenURI);
@@ -251,6 +260,7 @@ public class SpotifyProxy {
                                     wasOk = okToLogOut;
                                 }
                                 if (!wasOk) {
+                                    setLastError(context, "Unexpectedly logged out");
                                     handler.error("Unexpectedly logged out");
                                 }
                             }
@@ -258,12 +268,14 @@ public class SpotifyProxy {
                             @Override
                             public void onLoginFailed(Throwable throwable) {
                                 Log.e(LOG_TAG, "Login failed: " + throwable);
+                                setLastError(context, "Login failed");
                                 handler.error("Login failed");
                             }
 
                             @Override
                             public void onTemporaryError() {
                                 Log.e(LOG_TAG, "Temporary error playing");
+                                setLastError(context, "Temporary error playing");
                                 handler.error("Temporary error playing");
                             }
 
@@ -281,6 +293,7 @@ public class SpotifyProxy {
                             @Override
                             public void onPlaybackError(ErrorType errorType, String s) {
                                 Log.e(LOG_TAG, "Playback error: " + errorType + ", " + s);
+                                setLastError(context, "Playback error: " + errorType + ", " + s);
                                 handler.error(s);
                             }
                         });
@@ -291,6 +304,7 @@ public class SpotifyProxy {
 
                     @Override
                     public void onError(Throwable throwable) {
+                        setLastError(context, "Player init error: " + throwable);
                         handler.error(throwable.toString());
                     }
                 });
@@ -298,6 +312,7 @@ public class SpotifyProxy {
 
             @Override
             public void error(String s) {
+                setLastError(context, "Auth error: " + s);
                 handler.error(s);
             }
         });

@@ -95,6 +95,8 @@ public class SettingsActivity extends PreferenceActivity
         listPref.setEntries(mTimezones[1]);
         listPref.setSummary(listPref.getEntry());
         listPref.setOnPreferenceChangeListener(this);
+
+        findPreference("last_error").setTitle(SpotifyProxy.getInstance().getLastError(this));
     }
 
     @Override
