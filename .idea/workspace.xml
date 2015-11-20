@@ -19,9 +19,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d2982720-a7cf-49a4-825a-ec244e70f4e0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SettingsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SettingsActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SpotifyProxy.java" afterPath="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SpotifyProxy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/xml/settings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/xml/settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="clockify.iws" />
@@ -50,21 +48,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.061728396">
+              <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SettingsActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SettingsActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SettingsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27023318">
-              <caret line="98" column="90" selection-start-line="98" selection-start-column="90" selection-end-line="98" selection-end-column="90" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="109" column="35" selection-start-line="109" selection-start-column="35" selection-end-line="109" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -75,21 +73,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="68" column="31" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
-              <folding>
-                <element signature="e#834#858#0" expanded="true" />
-                <element signature="e#1120#1149#0" expanded="true" />
-                <element signature="e#1182#1203#0" expanded="true" />
-                <element signature="e#1308#1338#0" expanded="true" />
-                <element signature="e#1367#1405#0" expanded="true" />
-                <element signature="e#1656#1686#0" expanded="true" />
-                <element signature="e#1713#1737#0" expanded="true" />
-                <element signature="e#1814#1838#0" expanded="true" />
-                <element signature="e#2292#2323#0" expanded="true" />
-                <element signature="e#2458#2486#0" expanded="true" />
-                <element signature="e#2519#2547#0" expanded="true" />
-                <element signature="e#2689#2726#0" expanded="true" />
-                <element signature="e#2759#2796#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -97,11 +81,15 @@
       <file leaf-file-name="SpotifyProxy.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SpotifyProxy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-27.518518">
-              <caret line="295" column="44" selection-start-line="295" selection-start-column="32" selection-end-line="295" selection-end-column="44" />
+            <state vertical-scroll-proportion="-9.333333">
+              <caret line="299" column="33" selection-start-line="299" selection-start-column="33" selection-end-line="299" selection-end-column="33" />
               <folding>
-                <element signature="e#9095#9096#0" expanded="true" />
-                <element signature="e#9143#9144#0" expanded="true" />
+                <element signature="e#3772#3773#0" expanded="true" />
+                <element signature="e#3833#3834#0" expanded="true" />
+                <element signature="e#3897#3898#0" expanded="true" />
+                <element signature="e#3945#3946#0" expanded="true" />
+                <element signature="e#9107#9108#0" expanded="true" />
+                <element signature="e#9139#9140#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -112,17 +100,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1236#1237#0" expanded="false" />
-                <element signature="e#1277#1278#0" expanded="false" />
-                <element signature="e#1631#1632#0" expanded="false" />
-                <element signature="e#1674#1675#0" expanded="false" />
-                <element signature="e#2730#2731#0" expanded="false" />
-                <element signature="e#2824#2825#0" expanded="false" />
-                <element signature="e#3503#3504#0" expanded="false" />
-                <element signature="e#3592#3593#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -3492,9 +3470,9 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/playlist_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/PlaylistPicker.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/xml/settings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SpotifyProxy.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SettingsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SpotifyProxy.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -3536,8 +3514,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
+      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -3636,8 +3613,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3883,27 +3861,27 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33333334" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.74504626" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22031474" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37780714" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33333334" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.74504626" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40422723" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37780714" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -4201,10 +4179,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="81" column="96" selection-start-line="81" selection-start-column="96" selection-end-line="81" selection-end-column="96" />
-          <folding>
-            <element signature="e#0#5477#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4244,17 +4218,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1236#1237#0" expanded="false" />
-            <element signature="e#1277#1278#0" expanded="false" />
-            <element signature="e#1631#1632#0" expanded="false" />
-            <element signature="e#1674#1675#0" expanded="false" />
-            <element signature="e#2730#2731#0" expanded="false" />
-            <element signature="e#2824#2825#0" expanded="false" />
-            <element signature="e#3503#3504#0" expanded="false" />
-            <element signature="e#3592#3593#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -4294,47 +4258,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="68" column="31" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
-          <folding>
-            <element signature="e#834#858#0" expanded="true" />
-            <element signature="e#1120#1149#0" expanded="true" />
-            <element signature="e#1182#1203#0" expanded="true" />
-            <element signature="e#1308#1338#0" expanded="true" />
-            <element signature="e#1367#1405#0" expanded="true" />
-            <element signature="e#1656#1686#0" expanded="true" />
-            <element signature="e#1713#1737#0" expanded="true" />
-            <element signature="e#1814#1838#0" expanded="true" />
-            <element signature="e#2292#2323#0" expanded="true" />
-            <element signature="e#2458#2486#0" expanded="true" />
-            <element signature="e#2519#2547#0" expanded="true" />
-            <element signature="e#2689#2726#0" expanded="true" />
-            <element signature="e#2759#2796#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SettingsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+          <caret line="109" column="35" selection-start-line="109" selection-start-column="35" selection-end-line="109" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SpotifyProxy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-27.518518">
-          <caret line="295" column="44" selection-start-line="295" selection-start-column="32" selection-end-line="295" selection-end-column="44" />
+        <state vertical-scroll-proportion="-9.333333">
+          <caret line="299" column="33" selection-start-line="299" selection-start-column="33" selection-end-line="299" selection-end-column="33" />
           <folding>
-            <element signature="e#9095#9096#0" expanded="true" />
-            <element signature="e#9143#9144#0" expanded="true" />
+            <element signature="e#3772#3773#0" expanded="true" />
+            <element signature="e#3833#3834#0" expanded="true" />
+            <element signature="e#3897#3898#0" expanded="true" />
+            <element signature="e#3945#3946#0" expanded="true" />
+            <element signature="e#9107#9108#0" expanded="true" />
+            <element signature="e#9139#9140#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/se/oort/clockify/SettingsActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27023318">
-          <caret line="98" column="90" selection-start-line="98" selection-start-column="90" selection-end-line="98" selection-end-column="90" />
+        <state vertical-scroll-proportion="0.061728396">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
           <folding />
         </state>
       </provider>

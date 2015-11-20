@@ -24,6 +24,7 @@ import com.spotify.sdk.android.player.Spotify;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,9 +78,7 @@ public class SpotifyProxy {
     }
 
     private Player mPlayer;
-    private Handler handler;
-    private List<Runnable> callbacks = Collections.synchronizedList(new ArrayList<Runnable>());
-    private boolean okToLogOut = false;
+    private boolean hasPlayed = false;
 
     private SpotifyProxy() {
     }
@@ -231,6 +230,10 @@ public class SpotifyProxy {
         }));
     }
 
+    private synchronized boolean hasPlayed() {
+        return hasPlayed;
+    }
+
     public void play(final Context context, final String uri, final ResponseHandler<String> handler) {
         Log.d(LOG_TAG, "Asked to play " + uri);
         run(context, new ResponseHandler<String>() {
@@ -244,7 +247,7 @@ public class SpotifyProxy {
                     public void onInitialized(final Player player) {
                         Log.d(LOG_TAG, "Playing");
                         synchronized(SpotifyProxy.this) {
-                            okToLogOut = false;
+                            hasPlayed = false;
                         }
                         mPlayer.addConnectionStateCallback(new ConnectionStateCallback() {
                             @Override
@@ -255,11 +258,7 @@ public class SpotifyProxy {
                             @Override
                             public void onLoggedOut() {
                                 Log.w(LOG_TAG, "Logged out");
-                                boolean wasOk = false;
-                                synchronized (SpotifyProxy.this) {
-                                    wasOk = okToLogOut;
-                                }
-                                if (!wasOk) {
+                                if (!hasPlayed()) {
                                     setLastError(context, "Unexpectedly logged out");
                                     handler.error("Unexpectedly logged out");
                                 }
@@ -275,8 +274,10 @@ public class SpotifyProxy {
                             @Override
                             public void onTemporaryError() {
                                 Log.e(LOG_TAG, "Temporary error playing");
-                                setLastError(context, "Temporary error playing");
-                                handler.error("Temporary error playing");
+                                if (!hasPlayed()) {
+                                    setLastError(context, "Temporary error playing");
+                                    handler.error("Temporary error playing");
+                                }
                             }
 
                             @Override
@@ -293,8 +294,10 @@ public class SpotifyProxy {
                             @Override
                             public void onPlaybackError(ErrorType errorType, String s) {
                                 Log.e(LOG_TAG, "Playback error: " + errorType + ", " + s);
-                                setLastError(context, "Playback error: " + errorType + ", " + s);
-                                handler.error(s);
+                                if (!hasPlayed()) {
+                                    setLastError(context, "Playback error: " + errorType + ", " + s);
+                                    handler.error(s);
+                                }
                             }
                         });
                         mPlayer.play(uri);
@@ -322,7 +325,7 @@ public class SpotifyProxy {
     public void pause(Context context) {
         Log.d(LOG_TAG, "Asked to pause");
         synchronized(this) {
-            okToLogOut = true;
+            hasPlayed = true;
         }
         if (mPlayer != null) {
             mPlayer.pause();
